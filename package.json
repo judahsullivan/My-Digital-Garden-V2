@@ -1,0 +1,49 @@
+{
+  "name": "my-digital-garden-v2",
+  "author": "Judah Sullivan",
+  "description": "My developer portfolio built with Nextjs as the frontend framework, Sanity for my CMS, Framer-motion for animations, Lenis for smooth scroll, , Chakra-ui for sleek styling. ",
+  "keywords": [
+    "sanitycms",
+    "nextjs",
+    "portfolio",
+    "fullstack",
+    "blog",
+    "chakraui",
+    "framermotion"
+  ],
+  "license": "MIT",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/next-js": "^2.2.0",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource-variable/lora": "^5.0.9",
+    "@fontsource/aileron": "^5.0.7",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.21.1",
+    "framer-motion": "^10.16.14",
+    "next": "13.5.6",
+    "next-sanity": "^5.5.11",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^4.12.0",
+    "sanity": "^3.21.1",
+    "styled-components": "^6.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.6",
+    "typescript": "^5"
+  }
+}
