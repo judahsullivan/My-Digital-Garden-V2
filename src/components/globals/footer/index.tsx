@@ -106,17 +106,4 @@ const Footer = () => {
   );
 };
 
-const CustomLink = ({ children, ...props }: LinkProps) => {
-  return (
-    <Link
-      href="#"
-      fontSize="sm"
-      _hover={{ textDecoration: "underline" }}
-      {...props}
-    >
-      {children}
-    </Link>
-  );
-};
-
 export default Footer;
