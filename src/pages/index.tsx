@@ -9,8 +9,8 @@ export default function Main() {
     <Fragment>
       <Home />
       <About />
-      <RecentProjects />
-      <FeaturedArticles />
+      {/* <RecentProjects /> */}
+      {/* <FeaturedArticles /> */}
     </Fragment>
   );
 }
