@@ -24,29 +24,7 @@ export default function Navigation() {
             </chakra.span>
           </Text>
         </Link>
-        <Flex
-          display={["none", "none", "flex", "flex"]}
-          gap={10}
-          align={"center"}
-        >
-          <Flex as="nav" gap={5} fontSize={["lg"]}>
-            <Link passHref href="/about" as={NextLink}>
-              About
-            </Link>
-            <Link passHref href="/projects" as={NextLink}>
-              Projects
-            </Link>
-            <Link href="/blog" passHref as={NextLink}>
-              Blog
-            </Link>
-            <Link passHref href="/contact" as={NextLink}>
-              Contact
-            </Link>
-          </Flex>
-          |
-          <ThemeToggleButton />
-        </Flex>
-        <Flex display={["flex", "flex", "none", "none"]}>
+        <Flex >
           <MenuButton toggled={() => console.log("toggled")} />
         </Flex>
       </Flex>

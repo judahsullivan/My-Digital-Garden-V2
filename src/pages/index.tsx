@@ -9,7 +9,7 @@ export default function Main() {
     <Fragment>
       <Home />
       <About />
-      {/* <RecentProjects /> */}
+      <RecentProjects />
       {/* <FeaturedArticles /> */}
     </Fragment>
   );

@@ -15,9 +15,14 @@ export default function MenuButton({ toggled }: { toggled: boolean }) {
       w={16}
       variant={"ghost"}
     >
-      <Box w="full" border="1px" borderColor="white" />
-      <Box w="full" border="1px" borderColor="white" />
-      <Box w="full" border="1px" borderColor="white" />
+      <Box
+        w="50%"
+        placeSelf="start"
+        border="1px"
+        borderColor="blackAlpha.800"
+      />
+      <Box w="full" border="1px" borderColor="blackAlpha.800" />
+      <Box w="50%" border="1px" borderColor="blackAlpha.800" placeSelf="end" />
     </Button>
   );
 }

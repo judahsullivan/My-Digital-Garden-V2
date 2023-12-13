@@ -6,7 +6,8 @@ const theme = extendTheme({
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {
-        bg: mode("orange.50", "blackAlpha.900")(props),
+        fontFamily: "body",
+        bgColor: mode("blue.50", "blackAlpha.200")(props),
         color: mode("blackAlpha.900", "whiteAlpha.900")(props),
       },
     }),

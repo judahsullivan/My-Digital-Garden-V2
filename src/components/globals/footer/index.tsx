@@ -5,7 +5,6 @@ import {
   SiTwitter,
   SiYoutube,
 } from "react-icons/si";
-import { FiArrowRight } from "react-icons/fi";
 import {
   Box,
   Stack,
@@ -27,7 +26,7 @@ import {
 const Footer = () => {
   return (
     <Flex
-      bg={"blackAlpha.800"}
+      bg={useColorModeValue("blackAlpha.900", "blackAlpha.50")}
       direction="column"
       justify={"space-between"}
       p={5}
