@@ -72,7 +72,7 @@ export default function About() {
       <Stack w="full" direction="column" maxW={"fit-content"}>
         <Heading
           fontWeight={"extrabold"}
-          fontSize={"60px"}
+          fontSize={"5xl"}
           lineHeight="none"
           w="full"
           mx="auto"
@@ -122,15 +122,19 @@ export default function About() {
           >
             <Flex direction="column" gap="5">
               <Stack w="full" direction="column" maxW={"fit-content"}>
-                <Text fontSize={"2xl"} fontWeight={800}>
+                <Text fontSize={"4xl"} fontWeight={800}>
                   Crafting Digital Experiences
                 </Text>
                 <chakra.hr borderColor="blackAlpha.800" border="1" w="full" />
               </Stack>
               <Text fontSize={"xl"}>{about}</Text>
-              <Stack spacing={5} w="full">
-                <Heading fontSize={"xl"}> Favorite Stack</Heading>
-                <HStack spacing={{ base: 10, md: 5 }} align={"center"}>
+              <Stack spacing={5}>
+                <Box fontSize={"2xl"} w="fit-content" fontWeight={700}>
+                  {" "}
+                  <Text>Favorite Stack</Text>
+                  <chakra.hr borderColor="blackAlpha.800" w="full" />
+                </Box>
+                <HStack spacing={5} align={"center"}>
                   {socials.map((social, i) => (
                     <Icon
                       key={i}

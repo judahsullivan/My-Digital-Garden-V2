@@ -6,7 +6,6 @@ const theme = extendTheme({
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {
-        fontFamily: "body",
         bgColor: mode("blue.50", "blackAlpha.200")(props),
         color: mode("blackAlpha.900", "whiteAlpha.900")(props),
       },
@@ -48,8 +47,8 @@ const theme = extendTheme({
     96: "24rem",
   },
   fonts: {
-    heading: `'Aileron', sans-serif`,
-    body: `'Aileron', sans-serif`,
+    heading: `"Grotesque",  sans-serif`,
+    body: `"Aileron", sans-serif`,
   },
   fontSizes: {
     xs: "0.75rem",

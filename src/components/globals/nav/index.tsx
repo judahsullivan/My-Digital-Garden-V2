@@ -19,12 +19,17 @@ export default function Navigation() {
         <Link passHref as={NextLink} href="/">
           <Text fontWeight="thin">
             coded by{" "}
-            <chakra.span fontWeight="800" fontSize={["md", "lg"]}>
+            <chakra.span
+              fontFamily={"heading"}
+              fontWeight={800}
+              letterSpacing={"wide"}
+              fontSize={["md", "lg"]}
+            >
               Judah Sullivan
             </chakra.span>
           </Text>
         </Link>
-        <Flex >
+        <Flex>
           <MenuButton toggled={() => console.log("toggled")} />
         </Flex>
       </Flex>

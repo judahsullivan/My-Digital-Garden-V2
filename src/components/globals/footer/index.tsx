@@ -26,7 +26,7 @@ import {
 const Footer = () => {
   return (
     <Flex
-      bg={useColorModeValue("blackAlpha.900", "blackAlpha.50")}
+      bg={"blackAlpha.900"}
       direction="column"
       justify={"space-between"}
       p={5}
@@ -44,27 +44,56 @@ const Footer = () => {
         justifyContent="space-evenly"
         direction={{ base: "column" }}
       >
-        <Box>
-          <Text
+        <Box maxW="fit-content">
+          <Heading
             textTransform="capitalize"
             fontWeight={"bold"}
             fontSize={{ base: "5xl", md: "6xl" }}
           >
             Lets create a new Experience
-          </Text>
-          <chakra.hr
-            my={5}
-            maxW="3xl"
-            w="full"
-            borderColor={"whiteAlpha.800"}
-          />
+          </Heading>
+          <chakra.hr w="full" borderColor={"whiteAlpha.800"} />
         </Box>
+        <Stack
+          w="full"
+          maxW="5xl"
+          mx="auto"
+          align="center"
+          direction={{ base: "column", md: "column", lg: "row", xl: "row" }}
+          justify="space-between"
+        >
+          <VStack>
+            <Text fontSize="2xl" fontWeight={500}>
+              Newsletter Coming Soon
+            </Text>
+          </VStack>
+          <VStack>
+            <Text fontSize="2xl" fontWeight={500}>
+              Pages
+            </Text>
+
+            <chakra.hr w="full" borderColor={"whiteAlpha.800"} />
+            <Link></Link>
+          </VStack>
+          <VStack>
+            <Text fontSize="2xl" fontWeight={500}>
+              Socials
+            </Text>
+            <chakra.hr w="full" borderColor={"whiteAlpha.800"} />
+          </VStack>
+        </Stack>
       </Stack>
 
       <Flex direction="column">
         <chakra.hr w="full" borderColor={"whiteAlpha.800"} />
 
-        <Flex w="full" align="center" fontSize="lg" justify="space-between">
+        <Flex
+          w="full"
+          px={[0, 0, 5, 5]}
+          align="center"
+          fontSize="lg"
+          justify="space-between"
+        >
           <VStack textAlign="center">
             <chakra.p
               fontSize="sm"
@@ -72,14 +101,18 @@ const Footer = () => {
               fontWeight={"bold"}
               color="whiteAlpha.700"
             >
-              Year created
+              Authored By
             </chakra.p>
-
-            <chakra.p position="relative" fontSize={"lg"}>
-              {new Date().getFullYear()}
-              <chakra.span position="absolute" fontSize="xs" ml={1.5}>
-                ©️
-              </chakra.span>
+            <chakra.p fontSize={"lg"}>Judah Sullivan</chakra.p>
+          </VStack>
+          <VStack textAlign="center">
+            <chakra.p
+              fontSize="sm"
+              letterSpacing="widest"
+              fontWeight={"bold"}
+              color="whiteAlpha.700"
+            >
+              Local Time
             </chakra.p>
           </VStack>
           <VStack textAlign="center">
@@ -89,15 +122,15 @@ const Footer = () => {
               fontWeight={"bold"}
               color="whiteAlpha.700"
             >
-              Socials
+              Year Created
             </chakra.p>
-            <HStack spacing={2}>
-              <Icon as={SiInstagram} />
-              <Icon as={SiLinkedin} />
-              <Icon as={SiIndeed} />
-              <Icon as={SiYoutube} />
-              <Icon as={SiTwitter} />
-            </HStack>
+
+            <chakra.p position="relative" fontSize={"lg"}>
+              {new Date().getFullYear()}
+              <chakra.span position="absolute" fontSize="xs" ml={1.5}>
+                ©️
+              </chakra.span>
+            </chakra.p>
           </VStack>
         </Flex>
       </Flex>

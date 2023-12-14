@@ -16,7 +16,8 @@ import NextLink from "next/link";
 
 export default function Home() {
   const name = "Judah Sullivan";
-  const heading = "Full-Stack Enthusiast";
+  const fullstack = "FullStack";
+  const enthusiast = "enthusiast";
   const location = "New Orleans, Louisiana";
   const description =
     "With design focus and love for code. I am driven to set new heights in the development world!";
@@ -29,47 +30,56 @@ export default function Home() {
       direction="column"
       align="center"
       pos="relative"
-      mx={"auto"}
       p={4}
       textAlign="center"
-      my="auto"
       width="full"
     >
       <Flex
-        maxW={{ base: "full", md: 1200 }}
+        // maxW={{ base: "full", md: 1200 }}
         mx="auto"
         gap={[5, 8, 0]}
+        w="full"
         justify="center"
         direction="column"
         align="center"
       >
-        <Heading w="full" textAlign={["left", "left"]}>
-          {name}
-        </Heading>
-        <Heading
-          as="h1"
-          fontWeight={800}
-          lineHeight="none"
-          w="full"
-          fontSize={["70px", "110px"]}
-          textAlign="center"
-          mx="auto"
-        >
-          {heading}
-        </Heading>
-        <chakra.hr w="full" borderColor={useColorModeValue("black", "white")} />
+        <Stack w="full" direction="column">
+          <Heading
+            fontWeight={"extrabold"}
+            letterSpacing="tight"
+            textTransform="uppercase"
+            fontSize={{ base: "5xl", md: "25dvh" }}
+            lineHeight="none"
+            w="full"
+          >
+            {fullstack}
+          </Heading>
+          <Heading
+            fontWeight={"extrabold"}
+            fontSize={{ base: "5xl", md: "25dvh" }}
+            letterSpacing="tight"
+            textTransform="uppercase"
+            lineHeight="none"
+            w="full"
+            mx="auto"
+          >
+            {enthusiast}
+          </Heading>
+          <chakra.hr borderColor="blackAlpha.800" border="1" w="full" />
+        </Stack>
+
         <Flex
           align="center"
           textAlign="start"
-          p={5}
+          p={{ base: 5, md: 5 }}
           gap={{ base: 5, md: 6 }}
           direction={["column", "column", "row", "row"]}
           w="full"
           justify="space-between"
         >
           <chakra.p
-            fontSize={{ base: "lg", md: "xl", lg: "2xl" }}
-            maxW={["full", "lg"]}
+            fontSize={{ base: "xl", md: "xl", lg: "xl" }}
+            maxW={{ base: "full", md: "md" }}
             lineHeight="1.3"
             fontWeight={300}
           >
@@ -82,7 +92,6 @@ export default function Home() {
             variant="ghost"
             as={NextLink}
             href="/projects"
-            fontSize="xl"
           >
             View My Projects
           </Button>
