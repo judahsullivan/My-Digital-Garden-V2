@@ -1,12 +1,20 @@
-import { IconType } from "react-icons";
+import { LinkProps } from '../types';
 
-interface FooterProps {
-  title: string;
-  data: string;
-  icon?: IconType;
-}
-
-export const footerData: FooterProps[] = [
+export const linkData: LinkProps[] = [
   {
+    link: '/about',
+    title: 'About'
   },
+  {
+    link: '/projects',
+    title: 'Projects'
+  },
+  {
+    link: '/blog',
+    title: 'Blog'
+  },
+  {
+    link: '/contact',
+    title: 'Contact'
+  }
 ];

@@ -1,38 +1,58 @@
-import { Text, Flex, chakra, Link, Divider, Box } from "@chakra-ui/react";
-import NextLink from "next/link";
-import MenuButton from "./menuButton";
-import ThemeToggleButton from "./themeToggle";
+import { useRef } from 'react';
+import { Text, chakra, Link } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import MenuButton from './menuButton';
+import Menu from './menu';
+import { MotionFlex } from '../chakraMotion';
+import { useCycle } from 'framer-motion';
+import { useDimensions } from '@/lib/useDimension';
 
 export default function Navigation() {
+  const [toggled, isOpen] = useCycle(false, true);
+  const containerRef = useRef(null);
+  const { height } = useDimensions(containerRef);
+
   return (
-    <Flex
-      as="header"
-      zIndex={10}
-      position="fixed"
-      backdropFilter="auto"
-      backdropBlur="6px"
-      w="full"
-      px={[5, 10]}
-      h={16}
-    >
-      <Flex h="full" justify="space-between" w={"full"} align="center">
+    <MotionFlex as="header" zIndex={10} position="fixed" w="full" px={[5, 10]} h={16}>
+      <MotionFlex
+        initial={{
+          opacity: 0
+        }}
+        animate={{
+          opacity: 1
+        }}
+        transition={{
+          duration: 0.875,
+          ease: 'easeInOut',
+          delay: 1.7
+        }}
+        h="full"
+        justify="space-between"
+        w={'full'}
+        align="center"
+      >
         <Link passHref as={NextLink} href="/">
           <Text fontWeight="thin">
-            coded by{" "}
+            coded by{' '}
             <chakra.span
-              fontFamily={"heading"}
+              fontFamily={'heading'}
               fontWeight={800}
-              letterSpacing={"wide"}
-              fontSize={["md", "lg"]}
+              letterSpacing={'wide'}
+              fontSize={['md', 'lg']}
             >
               Judah Sullivan
             </chakra.span>
           </Text>
         </Link>
-        <Flex>
-          <MenuButton toggled={() => console.log("toggled")} />
-        </Flex>
-      </Flex>
-    </Flex>
+        <MotionFlex
+          custom={height}
+          initial={false}
+          ref={containerRef}
+          animate={toggled ? 'open' : 'closed'}
+        >
+          <Menu toggled={() => isOpen()} />
+        </MotionFlex>
+      </MotionFlex>
+    </MotionFlex>
   );
 }
