@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { Text, chakra, Link } from '@chakra-ui/react';
+import { useEffect, useRef } from 'react';
+import { Text, chakra, Link, useDisclosure } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import MenuButton from './menuButton';
 import Menu from './menu';
@@ -8,10 +8,25 @@ import { useCycle } from 'framer-motion';
 import { useDimensions } from '@/lib/useDimension';
 
 export default function Navigation() {
-  const [toggled, isOpen] = useCycle(false, true);
+  const [toggled, cycleToggled] = useCycle(false, true);
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
 
+  const disableScroll = () => {
+    document.body.style.overflow = 'hidden';
+  };
+
+  const enableScroll = () => {
+    document.body.style.overflow = 'auto';
+  };
+
+  useEffect(() => {
+    if (toggled) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }, [toggled]);
   return (
     <MotionFlex as="header" zIndex={10} position="fixed" w="full" px={[5, 10]} h={16}>
       <MotionFlex
@@ -50,7 +65,7 @@ export default function Navigation() {
           ref={containerRef}
           animate={toggled ? 'open' : 'closed'}
         >
-          <Menu toggled={() => isOpen()} />
+          <Menu toggled={() => cycleToggled()} />
         </MotionFlex>
       </MotionFlex>
     </MotionFlex>

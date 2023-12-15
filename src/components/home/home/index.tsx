@@ -17,7 +17,6 @@ import HomeAnimation from './animations';
 
 export default function Home() {
   const scope = HomeAnimation();
-  const name = 'Judah Sullivan';
   const fullstack = 'fullstack';
   const enthusiast = 'enthusiast';
   const location = 'New Orleans, Louisiana';
