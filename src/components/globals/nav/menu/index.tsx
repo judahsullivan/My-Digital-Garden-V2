@@ -1,60 +1,47 @@
-import { MouseEventHandler, useEffect } from 'react';
-import Cartoon from '@/public/assets/toon.png';
-import { MotionBox, MotionFlex } from '../../chakraMotion';
 import MenuButton from '../menuButton';
 import {
   Flex,
-  Icon,
+  VStack,
   chakra,
+  Box,
   Heading,
-  Link,
   Text,
-  Stack,
   HStack,
-  useDisclosure,
-  Avatar
+  useColorModeValue
 } from '@chakra-ui/react';
 import { linkData, socialData } from '@/utils/data';
 import AvatarWithRipple from '../../avatar';
+import ThemeToggleButton from '../themeToggle';
+import MagnetLink from '../../magneticLink';
 
-const menuContainer = {
-  open: (width = 1000) => ({
-    clipPath: `circle(${width * 2 + 200}px at calc(100% - 40px) 40px)`,
-    transition: {
-      ease: 'linear',
-      type: 'spring',
-      stiffness: 20,
-      restDelta: 2
-    }
-  }),
-  closed: (width = '30px') => ({
-    clipPath: `circle(${width} at calc(100% - 50px) 40px)`,
-    transition: {
-      ease: 'linear',
-      type: 'spring',
-      stiffness: 30
-    }
-  })
-};
+type RefType<T> = React.RefObject<T> | React.MutableRefObject<T>;
 
-export default function Menu({ toggled }: { toggled: MouseEventHandler }) {
+export default function Menu({
+  toggled,
+  containerRef
+}: {
+  toggled: () => void;
+  containerRef: RefType<any>;
+}) {
+  const color = useColorModeValue('whiteAlpha.900', 'blackAlpha.800');
   return (
-    <MotionBox
-      layout
-      variants={menuContainer}
+    <Flex
+      className="overlay"
+      ref={containerRef}
       backdropFilter="auto"
-      color="whiteAlpha.900"
-      backdropBlur="lg"
+      backdropBlur="10px"
       w="full"
       h="100dvh"
-      bgColor="blackAlpha.800"
+      bgColor={useColorModeValue('blackAlpha.900', 'whiteAlpha.900')}
+      color={color}
       position="absolute"
+      px={5}
       top={0}
       bottom={0}
       right={0}
     >
       <MenuButton toggled={toggled} />
-      <MotionFlex
+      <Flex
         pt={{ base: 5 }}
         pb={{ base: 5 }}
         maxW={1200}
@@ -64,14 +51,22 @@ export default function Menu({ toggled }: { toggled: MouseEventHandler }) {
         w="full"
         justify="space-between"
       >
-        <MotionBox w="fit-content">
-          <Heading fontSize={{ base: '4xl', md: '2xl' }} fontWeight={700}>
-            Menu
-          </Heading>
-          <chakra.hr border="1" w="full" />
-        </MotionBox>
-
-        <MotionFlex h="full" pt={{ base: 5 }} justify="center" gap={5} direction="column">
+        <Box w="fit-content">
+          <Flex overflow="hidden">
+            <Heading fontSize={{ base: '4xl' }} fontWeight={700}>
+              {'Menu'.split('').map((heading, index) => (
+                <chakra.span key={index} display={'inline-flex'} overflow="hidden">
+                  <chakra.span display="inline-flex" className="heading">
+                    {heading}{' '}
+                  </chakra.span>
+                </chakra.span>
+              ))}
+            </Heading>
+            <ThemeToggleButton />
+          </Flex>
+          <chakra.hr borderColor={color} w="full" className="line" />
+        </Box>
+        <Flex h="full" pt={{ base: 5 }} justify="center" gap={5} direction="column">
           <Flex
             direction={['column', 'column', 'row', 'row']}
             maxW="6xl"
@@ -79,78 +74,95 @@ export default function Menu({ toggled }: { toggled: MouseEventHandler }) {
             align="center"
             h="full"
             mx="auto"
-            justify="space-between"
           >
             <Flex
               direction={['column', 'column']}
+              justify="space-between"
               w="full"
               h="100%"
-              justify="space-between"
               display={{ base: 'none', md: 'flex' }}
             >
-              <Flex direction="column" w="fit-content">
-                <Text fontSize={{ base: '2xl', md: 'xl' }} fontWeight={600}>
-                  Developing a Purpose
-                </Text>
-                <chakra.hr border="1" w="full" />
+              <Flex pt={10} direction="column" w="fit-content">
+                <Heading display="flex" gap={1} fontSize={'2xl'} fontWeight={600}>
+                  {'Judah Sullivan'.split('').map((heading, index) => (
+                    <chakra.span display={'inline-flex'} overflow="hidden" key={index}>
+                      <chakra.span display="inline-flex" className="heading">
+                        {heading}{' '}
+                      </chakra.span>
+                    </chakra.span>
+                  ))}
+                </Heading>
+                <chakra.hr borderColor={color} className="line" />
+                <Box className="description">
+                  <AvatarWithRipple
+                    image={
+                      'https://cdn.sanity.io/images/berh8gtg/production/2753b3cbab3ef145f59a5355a443ee6898bb6a04-420x420.png'
+                    }
+                  />
+                </Box>
               </Flex>
-              <AvatarWithRipple
-                image={
-                  'https://cdn.sanity.io/images/berh8gtg/production/2753b3cbab3ef145f59a5355a443ee6898bb6a04-420x420.png'
-                }
-              />
-              <Text maxW="lg" fontSize="2xl" fontWeight={'thin'} lineHeight="1.3">
-                Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore
-                culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim
-                cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip
-                amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut
+              <Text
+                fontSize="lg"
+                letterSpacing={1}
+                maxW="md"
+                w="full"
+                fontWeight={'normal'}
+                textColor={color}
+                className="description"
+                lineHeight="1.3"
+              >
+                Connect with me and stay updated by following my blog. Let&apos;s collaborate on
+                creating exceptional user experiences and shaping the future of development.
+                Together, we can turn ideas into reality and make a lasting impact in the digital
+                world! Join me on this exciting journey!
               </Text>
             </Flex>
-            <Flex direction={['column', 'column']} w="full" h="100%" justify="space-between">
-              <Flex direction="column" w="fit-content">
-                <Text fontSize={{ base: '2xl', md: 'xl' }} fontWeight={600}>
-                  Navigation
-                </Text>
-                <chakra.hr border="1" w="full" />
-              </Flex>
-              {linkData.map((links, index) => (
-                <Link key={index}>
-                  <Heading fontSize={{ base: '7xl', md: '5xl' }} fontWeight={500}>
-                    {links.title.split('').map((link, index) => (
-                      <chakra.span key={index} display={'inline-block'} overflow="hidden">
-                        <chakra.span display={'inline-block'}>{link}</chakra.span>
+            <Flex direction={['column', 'column']} w="full" h="100%">
+              <Flex letterSpacing="wider" pt={10} direction="column" w="fit-content">
+                <Heading display="flex" gap={1} fontSize={'xl'} fontWeight={600}>
+                  {'Navigation'.split('').map((heading, index) => (
+                    <chakra.span display={'inline-flex'} overflow="hidden" key={index}>
+                      <chakra.span display="inline-flex" className="heading">
+                        {heading}{' '}
                       </chakra.span>
-                    ))}
-                  </Heading>
-                </Link>
-              ))}
+                    </chakra.span>
+                  ))}
+                </Heading>
+                <chakra.hr borderColor={color} className="line" border="1" w="full" />
+              </Flex>
+              <Flex w="fit-content" gap={2} direction="column">
+                {linkData.map((links, index) => (
+                  <Box key={index} fontSize={{ base: '7xl', md: '5xl' }} fontWeight={500}>
+                    <MagnetLink key={index} text={links.title} href={links.link} />
+                  </Box>
+                ))}
+              </Flex>
             </Flex>
           </Flex>
-          <MotionFlex gap={2} pb={{ base: 0, md: 10 }} direction="column">
-            <chakra.hr border="1" w="full" />
-            <Text>Socials</Text>
+          <Flex gap={2} pb={{ base: 0, md: 10 }} direction="column">
+            <chakra.hr borderColor={color} className="line" w="full" />
+            <VStack w="fit-content" spacing="0">
+              <Heading display="flex" gap={1} fontSize={'md'} fontWeight={600}>
+                {'Socials'.split('').map((heading, index) => (
+                  <chakra.span display={'inline-flex'} overflow="hidden" key={index}>
+                    <chakra.span display="inline-flex" className="heading">
+                      {heading}{' '}
+                    </chakra.span>
+                  </chakra.span>
+                ))}
+              </Heading>
+              <chakra.hr borderColor={color} className="line" w="full" />
+            </VStack>
             <HStack px={2} justify="space-between">
               {socialData.map((social, index) => (
                 <Text key={index}>
-                  {social.title.split('').map((s, index) => (
-                    <chakra.span
-                      fontSize="sm"
-                      letterSpacing={'wide'}
-                      fontWeight="normal"
-                      key={index}
-                      textTransform="uppercase"
-                      display={'inline-block'}
-                      overflow="hidden"
-                    >
-                      <chakra.span display={'inline-block'}>{s}</chakra.span>
-                    </chakra.span>
-                  ))}
+                  <MagnetLink href={social.link} text={social.title} />
                 </Text>
               ))}
             </HStack>
-          </MotionFlex>
-        </MotionFlex>
-      </MotionFlex>
-    </MotionBox>
+          </Flex>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 }

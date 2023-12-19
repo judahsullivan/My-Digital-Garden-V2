@@ -2,6 +2,7 @@ import { Avatar, Box, Image, Skeleton, keyframes, useColorModeValue } from '@cha
 import { MotionFlex } from '../chakraMotion';
 
 export default function AvatarWithRipple({ image, props }: any) {
+  const bgColor = useColorModeValue('#f9f9f9', '#2E2C2F');
   const size = '96px';
   const pulseRing = keyframes`
 	0% {
@@ -40,13 +41,13 @@ export default function AvatarWithRipple({ image, props }: any) {
           marginLeft: '-100%',
           marginTop: '-100%',
           borderRadius: '50%',
-          bg: useColorModeValue('#202023', '#f0e7db'),
+          bg: bgColor,
           animation: `2.25s ${pulseRing} cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite`
         }}
       >
         <Image
           src={image}
-          bg={useColorModeValue('#202023', '#f0e7db')}
+          bg={bgColor}
           position="absolute"
           top={0}
           rounded={'full'}

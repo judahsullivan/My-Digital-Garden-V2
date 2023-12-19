@@ -10,6 +10,16 @@ export const MotionBox = motion(
     return <Box ref={ref} {...chakraProps} />;
   })
 );
+export const MotionHr = motion(
+  forwardRef((props, ref) => {
+    const chakraProps = Object.fromEntries(
+      // do not pass framer props to DOM element
+      Object.entries(props).filter(([key]) => !isValidMotionProp(key))
+    );
+    return <Box as="hr" ref={ref} {...chakraProps} />;
+  })
+);
+
 
 export const MotionFlex = motion(
   forwardRef((props, ref) => {

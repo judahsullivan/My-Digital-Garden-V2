@@ -1,7 +1,17 @@
 import NextLink from 'next/link';
 import { FiArrowRight } from 'react-icons/fi';
-import { Icon, Heading, chakra, Stack, VStack, useColorModeValue, Button } from '@chakra-ui/react';
-import GridCard from '@/components/globals/card';
+import {
+  Icon,
+  Heading,
+  chakra,
+  Stack,
+  VStack,
+  useColorModeValue,
+  Button,
+  Flex
+} from '@chakra-ui/react';
+import { RightProjectCard } from '@/components/globals/card';
+import MagnetLink from '@/components/globals/magneticLink';
 
 export default function RecentProjects() {
   return (
@@ -19,11 +29,11 @@ export default function RecentProjects() {
         minH="100dvh"
         justify="space-between"
       >
-        <VStack spacing={5} maxW="fit-content">
+        <VStack maxW="fit-content">
           <Heading
-            as="h1"
             fontWeight={'extrabold'}
             fontSize={'60px'}
+            textColor="accent.100"
             lineHeight="none"
             w="full"
             mx="auto"
@@ -32,18 +42,22 @@ export default function RecentProjects() {
           </Heading>
           <chakra.hr w="full" borderColor={useColorModeValue('black', 'white')} />
         </VStack>
-        <Stack>
-          <GridCard />
-        </Stack>
+        <Flex direction="column">
+          <RightProjectCard />
+        </Flex>
         <Button
-          rightIcon={<Icon as={FiArrowRight} />}
+          _hover={{
+            bg: 'transparent'
+          }}
           variant="ghost"
+          gap={2}
           placeSelf={'end'}
           as={NextLink}
           href="/about"
           fontSize="xl"
         >
-          View all Projects
+          <MagnetLink text="View All Pojects" href="/about" />
+          <Icon as={FiArrowRight} />
         </Button>
       </Stack>
     </Stack>

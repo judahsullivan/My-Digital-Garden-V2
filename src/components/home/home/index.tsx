@@ -11,9 +11,10 @@ import {
   VStack,
   Box
 } from '@chakra-ui/react';
-import { FiArrowDownCircle, FiArrowRight } from 'react-icons/fi';
+import { FiArrowDown, FiArrowDownCircle, FiArrowRight } from 'react-icons/fi';
 import NextLink from 'next/link';
 import HomeAnimation from './animations';
+import MagnetLink from '@/components/globals/magneticLink';
 
 export default function Home() {
   const scope = HomeAnimation();
@@ -43,6 +44,7 @@ export default function Home() {
             letterSpacing="tight"
             textTransform="uppercase"
             fontSize={{ base: '5xl', md: '25dvh' }}
+            textColor="accent.100"
             lineHeight="none"
             w="full"
           >
@@ -56,6 +58,7 @@ export default function Home() {
           </Heading>
           <Heading
             fontWeight={'extrabold'}
+            textColor="accent.100"
             letterSpacing="tight"
             textTransform="uppercase"
             fontSize={{ base: '5xl', md: '25dvh' }}
@@ -71,7 +74,7 @@ export default function Home() {
             ))}
           </Heading>
 
-          <chakra.hr className="line" borderColor="blackAlpha.800" border="1" w="full" />
+          <chakra.hr className="line" border="1" w="full" />
 
           <Flex
             align="center"
@@ -87,20 +90,25 @@ export default function Home() {
               maxW={{ base: 'full', md: 'md' }}
               className="content"
               lineHeight="1.3"
-              fontWeight={300}
+              fontWeight={400}
             >
               {description}
             </chakra.p>
 
             <Button
-              rightIcon={<Icon as={FiArrowRight} />}
               placeSelf={'start'}
               className="content"
+              display="flex"
+              gap="2"
               variant="ghost"
+              _hover={{
+                bgColor:"transparent"
+              }}
               as={NextLink}
               href="/projects"
             >
-              View My Projects
+              <MagnetLink href="/projects" text="Get In touch"/>
+ <Icon as={FiArrowRight} />
             </Button>
           </Flex>
           <Flex
@@ -111,14 +119,22 @@ export default function Home() {
             right={['0%']}
             pos="absolute"
           >
-            <chakra.p>{location}</chakra.p>
-            <chakra.hr borderColor={useColorModeValue('black', 'white')} w="40px" />
+            <chakra.p textColor="muted.900">{location}</chakra.p>
+            <chakra.hr color={useColorModeValue('muted.900', 'muted.100')} w="40px" />
           </Flex>
         </Stack>
       </Flex>
 
-      <Flex className="content" bottom={['5%']} left={['2%']} gap="2" align="center" pos="absolute">
-        <Icon fontSize={'4xl'} as={FiArrowDownCircle} />
+      <Flex
+        className="content"
+        textColor={'muted.900'}
+        bottom={['5%']}
+        left={['2%']}
+        gap="2"
+        align="center"
+        pos="absolute"
+      >
+        <Icon fontSize={'4xl'} as={FiArrowDown} />
       </Flex>
     </Flex>
   );

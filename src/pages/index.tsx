@@ -8,7 +8,6 @@ export default function Main() {
   return (
     <Fragment>
       <Home />
-      <About />
       <RecentProjects />
       {/* <FeaturedArticles /> */}
     </Fragment>

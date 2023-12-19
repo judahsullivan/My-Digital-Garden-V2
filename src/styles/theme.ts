@@ -1,13 +1,18 @@
-import { StyleFunctionProps, extendTheme } from '@chakra-ui/react';
+import { StyleFunctionProps, extendTheme,type ThemeConfig } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 
-// example theme
+const config: ThemeConfig = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+}
+
 const theme = extendTheme({
+  config,
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {
-        bgColor: mode('#f0e7db', 'blackAlpha.200')(props),
-        color: mode('blackAlpha.900', 'whiteAlpha.900')(props)
+        bgColor: mode('#f9f9f9', '#151415')(props),
+        textColor: mode('#2E2C2F', '#f9f9f9')(props)
       }
     })
   },
@@ -50,6 +55,15 @@ const theme = extendTheme({
     heading: `"Grotesque",  sans-serif`,
     body: `"Aileron", sans-serif`
   },
+  colors: {
+    accent: {
+      100: '#5d5ad6'
+    },
+    muted: {
+      100: 'gray.200',
+      900: '#748386'
+    }
+  },
   fontSizes: {
     xs: '0.75rem',
     sm: '0.875rem',
@@ -75,6 +89,10 @@ const theme = extendTheme({
     bold: 700,
     extrabold: 800,
     black: 900
+  },
+
+  bgColor: {
+    inverted: mode('#151415', '#f9f9f9')
   },
   lineHeights: {
     normal: 'normal',

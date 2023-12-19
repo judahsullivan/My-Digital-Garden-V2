@@ -1,16 +1,15 @@
-import { useEffect, useRef } from 'react';
-import { Text, chakra, Link, useDisclosure } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { Text, chakra, Link } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import MenuButton from './menuButton';
 import Menu from './menu';
 import { MotionFlex } from '../chakraMotion';
-import { useCycle } from 'framer-motion';
-import { useDimensions } from '@/lib/useDimension';
+import { AnimatePresence, useCycle } from 'framer-motion';
+import MenuAnimations from './animations';
+import MagnetLink from '../magneticLink';
 
 export default function Navigation() {
-  const [toggled, cycleToggled] = useCycle(false, true);
-  const containerRef = useRef(null);
-  const { height } = useDimensions(containerRef);
+  const [toggled, setIsToggled] = useCycle(false, true);
+  const containerRef = MenuAnimations(toggled);
 
   const disableScroll = () => {
     document.body.style.overflow = 'hidden';
@@ -27,8 +26,18 @@ export default function Navigation() {
       enableScroll();
     }
   }, [toggled]);
+
   return (
-    <MotionFlex as="header" zIndex={10} position="fixed" w="full" px={[5, 10]} h={16}>
+    <MotionFlex
+      as="header"
+      backdropFilter="auto"
+      backdropBlur="6px"
+      zIndex={50}
+      position="fixed"
+      w="full"
+      px={[5, 10]}
+      h={16}
+    >
       <MotionFlex
         initial={{
           opacity: 0
@@ -46,27 +55,15 @@ export default function Navigation() {
         w={'full'}
         align="center"
       >
-        <Link passHref as={NextLink} href="/">
-          <Text fontWeight="thin">
-            coded by{' '}
-            <chakra.span
-              fontFamily={'heading'}
-              fontWeight={800}
-              letterSpacing={'wide'}
-              fontSize={['md', 'lg']}
-            >
-              Judah Sullivan
-            </chakra.span>
-          </Text>
-        </Link>
-        <MotionFlex
-          custom={height}
-          initial={false}
-          ref={containerRef}
-          animate={toggled ? 'open' : 'closed'}
+        <Text
+          fontFamily={'heading'}
+          color="accent.900"
+          letterSpacing={'wide'}
+          fontSize={['md', 'lg']}
         >
-          <Menu toggled={() => cycleToggled()} />
-        </MotionFlex>
+          <MagnetLink text="Judah Sullivan" href="/" />
+        </Text>
+        <Menu toggled={() => setIsToggled()} containerRef={containerRef} />
       </MotionFlex>
     </MotionFlex>
   );

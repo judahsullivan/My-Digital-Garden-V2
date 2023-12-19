@@ -1,5 +1,5 @@
 import { stagger, useAnimate } from 'framer-motion';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function HomeAnimations() {
   const [scope, animate] = useAnimate();

@@ -18,9 +18,10 @@ import {
 // Here we have used react-icons package for the icons
 
 const Footer = () => {
+  const footerBg = '#151415';
   return (
     <Flex
-      bg={'blackAlpha.900'}
+      bg={footerBg}
       direction="column"
       justify={'space-between'}
       p={5}
