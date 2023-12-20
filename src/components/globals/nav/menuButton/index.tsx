@@ -1,7 +1,9 @@
-import { Box } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import AnimatedButton from '../../animatedButton';
 
 export default function MenuButton({ toggled }: { toggled: () => void }) {
+
+        const borderColor = useColorModeValue('whiteAlpha.900', 'black')
   return (
     <Box
       gap={2}
@@ -24,10 +26,10 @@ export default function MenuButton({ toggled }: { toggled: () => void }) {
         className="hamburger line1"
         placeSelf="start"
         border="1px"
-        borderColor="whiteAlpha.900"
+        borderColor={borderColor}
       />
-      <Box className="hamburger line2" border="1px" borderColor="whiteAlpha.900" />
-      <Box className="hamburger line3" border="1px" borderColor="whiteAlpha.900" placeSelf="end" />
+      <Box className="hamburger line2" border="1px" borderColor={borderColor}/>
+      <Box className="hamburger line3" border="1px" borderColor={borderColor} placeSelf="end" />
     </Box>
   );
 }

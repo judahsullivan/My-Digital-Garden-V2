@@ -38,14 +38,14 @@ export default function Home() {
       width="full"
     >
       <Flex mx="auto" gap={[5, 8, 0]} w="full" justify="center" direction="column" align="center">
-        <Stack w="fit-content" direction="column">
+        <Stack pt={{ base: 0, md: 5 }} w="fit-content" direction="column">
           <Heading
             fontWeight={'extrabold'}
             letterSpacing="tight"
             textTransform="uppercase"
-            fontSize={{ base: '5xl', md: '25dvh' }}
+            fontSize={{ base: '6xl', md: '25dvh' }}
             textColor="accent.100"
-            lineHeight="none"
+            noOfLines={1}
             w="full"
           >
             {fullstack.split('').map((heading, index) => (
@@ -59,8 +59,11 @@ export default function Home() {
           <Heading
             fontWeight={'extrabold'}
             textColor="accent.100"
+            noOfLines={1}
+            display={'block'}
             letterSpacing="tight"
             textTransform="uppercase"
+            textAlign="left"
             fontSize={{ base: '5xl', md: '25dvh' }}
             lineHeight="none"
             w="full"
@@ -74,7 +77,7 @@ export default function Home() {
             ))}
           </Heading>
 
-          <chakra.hr className="line" border="1" w="full" />
+          <chakra.hr className="line" borderColor="accent.100" w="full" />
 
           <Flex
             align="center"
@@ -102,13 +105,11 @@ export default function Home() {
               gap="2"
               variant="ghost"
               _hover={{
-                bgColor:"transparent"
+                bgColor: 'transparent'
               }}
-              as={NextLink}
-              href="/projects"
             >
-              <MagnetLink href="/projects" text="Get In touch"/>
- <Icon as={FiArrowRight} />
+              <MagnetLink href="/projects" text="Get In touch" />
+              <Icon as={FiArrowRight} />
             </Button>
           </Flex>
           <Flex
@@ -124,7 +125,6 @@ export default function Home() {
           </Flex>
         </Stack>
       </Flex>
-
       <Flex
         className="content"
         textColor={'muted.900'}

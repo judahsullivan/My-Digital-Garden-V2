@@ -1,10 +1,21 @@
+import { isActiveLink } from '@/lib/isActiveLink';
+import { MotionBox } from '../../chakraMotion';
+import { useAnimate } from 'framer-motion';
 import { Link, Box, chakra } from '@chakra-ui/react';
-import { useAnimate } from 'framer-motion'; // Import useAnimation instead of useAnimate
-import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import NextLink from 'next/link';
 
-export default function MagnetLink({ text, href, ...chakraProps }: { text: string; href: string }) {
+export default function AnimatedNavLink({
+  text,
+  children,
+  href
+}: {
+  children: string;
+  text: string;
+  href: string;
+}) {
   const [scope, animate] = useAnimate();
+  const router = useRouter();
 
   const Enter = () => {
     animate([
@@ -37,7 +48,6 @@ export default function MagnetLink({ text, href, ...chakraProps }: { text: strin
       ]
     ]);
   };
-
   return (
     <chakra.span
       ref={scope}
@@ -48,7 +58,6 @@ export default function MagnetLink({ text, href, ...chakraProps }: { text: strin
       onMouseLeave={Exit}
       position="relative"
       className="description"
-      {...chakraProps}
     >
       <Link
         _after={{

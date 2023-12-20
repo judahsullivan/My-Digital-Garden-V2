@@ -10,8 +10,9 @@ import {
   Button,
   Flex
 } from '@chakra-ui/react';
-import { RightProjectCard } from '@/components/globals/card';
+import { RightProjectCard, MdCard, LeftProjectCard } from '@/components/globals/card';
 import MagnetLink from '@/components/globals/magneticLink';
+import { Fragment } from 'react';
 
 export default function RecentProjects() {
   return (
@@ -42,7 +43,14 @@ export default function RecentProjects() {
           </Heading>
           <chakra.hr w="full" borderColor={useColorModeValue('black', 'white')} />
         </VStack>
-        <Flex direction="column">
+        <Flex gap={5} direction="column">
+          {Array.from({ length: 2 }).map((_, index) => (
+            <Fragment key={index}>
+              <MdCard />
+              {index % 2 === 0 ? <RightProjectCard /> : <LeftProjectCard />}
+            </Fragment>
+          ))}
+          <MdCard />
           <RightProjectCard />
         </Flex>
         <Button
@@ -52,8 +60,6 @@ export default function RecentProjects() {
           variant="ghost"
           gap={2}
           placeSelf={'end'}
-          as={NextLink}
-          href="/about"
           fontSize="xl"
         >
           <MagnetLink text="View All Pojects" href="/about" />

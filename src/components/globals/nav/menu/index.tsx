@@ -13,6 +13,10 @@ import { linkData, socialData } from '@/utils/data';
 import AvatarWithRipple from '../../avatar';
 import ThemeToggleButton from '../themeToggle';
 import MagnetLink from '../../magneticLink';
+import { useRouter } from 'next/router';
+import { isActiveLink } from '@/lib/isActiveLink';
+import { MotionBox } from '../../chakraMotion';
+import AnimatedNavLink from '../../links/animatedNavLink';
 
 type RefType<T> = React.RefObject<T> | React.MutableRefObject<T>;
 
@@ -23,6 +27,7 @@ export default function Menu({
   toggled: () => void;
   containerRef: RefType<any>;
 }) {
+  const router = useRouter();
   const color = useColorModeValue('whiteAlpha.900', 'blackAlpha.800');
   return (
     <Flex
@@ -66,7 +71,7 @@ export default function Menu({
           </Flex>
           <chakra.hr borderColor={color} w="full" className="line" />
         </Box>
-        <Flex h="full" pt={{ base: 5 }} justify="center" gap={5} direction="column">
+        <Flex h="full" pt={{ base: 0, md: 5 }} justify="center" gap={5} direction="column">
           <Flex
             direction={['column', 'column', 'row', 'row']}
             maxW="6xl"
@@ -82,7 +87,7 @@ export default function Menu({
               h="100%"
               display={{ base: 'none', md: 'flex' }}
             >
-              <Flex pt={10} direction="column" w="fit-content">
+              <Flex pt={{ lg: 10 }} direction="column" w="fit-content">
                 <Heading display="flex" gap={1} fontSize={'2xl'} fontWeight={600}>
                   {'Judah Sullivan'.split('').map((heading, index) => (
                     <chakra.span display={'inline-flex'} overflow="hidden" key={index}>
@@ -132,8 +137,10 @@ export default function Menu({
               </Flex>
               <Flex w="fit-content" gap={2} direction="column">
                 {linkData.map((links, index) => (
-                  <Box key={index} fontSize={{ base: '7xl', md: '5xl' }} fontWeight={500}>
-                    <MagnetLink key={index} text={links.title} href={links.link} />
+                  <Box key={index} fontSize={{ base: '5xl', md: '5xl' }} fontWeight={500}>
+                    <AnimatedNavLink text={links.title} href={links.link}>
+                      {links.title}
+                    </AnimatedNavLink>
                   </Box>
                 ))}
               </Flex>
