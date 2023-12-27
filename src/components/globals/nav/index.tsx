@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
-import { Text, chakra, Link } from '@chakra-ui/react';
+import { useEffect, Fragment } from 'react';
+import { Text, chakra, Link, Flex, Box } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import Menu from './menu';
 import { MotionFlex } from '../chakraMotion';
 import { AnimatePresence, useCycle } from 'framer-motion';
 import MenuAnimations from './animations';
 import MagnetLink from '../magneticLink';
+import { linkData } from '@/utils/data';
+import AnimatedNavLink from '../links/animatedNavLink';
 
 export default function Navigation() {
   const [toggled, setIsToggled] = useCycle(false, true);
@@ -35,6 +37,7 @@ export default function Navigation() {
       zIndex={50}
       position="fixed"
       w="full"
+      align="center"
       px={[5, 10]}
       h={16}
     >
@@ -55,15 +58,19 @@ export default function Navigation() {
         w={'full'}
         align="center"
       >
-        <Text
-          fontFamily={'heading'}
-          color="accent.900"
-          letterSpacing={'wide'}
-          fontSize={['md', 'lg']}
-        >
-          <MagnetLink text="Judah Sullivan" href="/" />
-        </Text>
-        <Menu toggled={() => setIsToggled()} containerRef={containerRef} />
+        <AnimatedNavLink href="/">Judah Sullivan</AnimatedNavLink>
+        <Flex display={{ base: 'none', sm: 'none', md: 'flex', lg: 'flex' }} align="center">
+          <Flex w="fit-content" fontSize="xl" gap={5} align="center">
+            {linkData.map((links, index) => (
+              <Fragment key={index}>
+                <AnimatedNavLink href={links.link}>{links.title}</AnimatedNavLink>
+              </Fragment>
+            ))}
+          </Flex>
+        </Flex>
+        <Flex display={{ base: 'flex', sm: 'flex', md: 'none', lg: 'none' }}>
+          <Menu toggled={() => setIsToggled()} containerRef={containerRef} />
+        </Flex>
       </MotionFlex>
     </MotionFlex>
   );

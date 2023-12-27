@@ -15,6 +15,8 @@ import {
   useColorModeValue,
   Icon
 } from '@chakra-ui/react';
+import { linkData, socialData } from '@/utils/data';
+import AnimatedNavLink from '../links/animatedNavLink';
 // Here we have used react-icons package for the icons
 
 const Footer = () => {
@@ -36,6 +38,7 @@ const Footer = () => {
         mx="auto"
         maxW={1200}
         spacing={[8, 12]}
+        h="full"
         justifyContent="space-evenly"
         direction={{ base: 'column' }}
       >
@@ -49,34 +52,16 @@ const Footer = () => {
           </Heading>
           <chakra.hr w="full" borderColor={'whiteAlpha.800'} />
         </Box>
-        <Stack
+        <Flex
           w="full"
-          maxW="5xl"
           mx="auto"
+          h="full"
+          display="flex"
           align="center"
           direction={{ base: 'column', md: 'column', lg: 'row', xl: 'row' }}
           justify="space-between"
         >
-          <VStack>
-            <Text fontSize="2xl" fontWeight={500}>
-              Newsletter Coming Soon
-            </Text>
-          </VStack>
-          <VStack>
-            <Text fontSize="2xl" fontWeight={500}>
-              Pages
-            </Text>
-
-            <chakra.hr w="full" borderColor={'whiteAlpha.800'} />
-            <Link></Link>
-          </VStack>
-          <VStack>
-            <Text fontSize="2xl" fontWeight={500}>
-              Socials
-            </Text>
-            <chakra.hr w="full" borderColor={'whiteAlpha.800'} />
-          </VStack>
-        </Stack>
+        </Flex>
       </Stack>
 
       <Flex direction="column">

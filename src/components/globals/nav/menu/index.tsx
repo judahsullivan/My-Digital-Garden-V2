@@ -14,8 +14,6 @@ import AvatarWithRipple from '../../avatar';
 import ThemeToggleButton from '../themeToggle';
 import MagnetLink from '../../magneticLink';
 import { useRouter } from 'next/router';
-import { isActiveLink } from '@/lib/isActiveLink';
-import { MotionBox } from '../../chakraMotion';
 import AnimatedNavLink from '../../links/animatedNavLink';
 
 type RefType<T> = React.RefObject<T> | React.MutableRefObject<T>;
@@ -137,10 +135,13 @@ export default function Menu({
               </Flex>
               <Flex w="fit-content" gap={2} direction="column">
                 {linkData.map((links, index) => (
-                  <Box key={index} fontSize={{ base: '5xl', md: '5xl' }} fontWeight={500}>
-                    <AnimatedNavLink text={links.title} href={links.link}>
-                      {links.title}
-                    </AnimatedNavLink>
+                  <Box
+                    key={index}
+                    onClick={toggled}
+                    fontSize={{ base: '5xl', md: '5xl' }}
+                    fontWeight={500}
+                  >
+                    <AnimatedNavLink href={links.link}>{links.title}</AnimatedNavLink>
                   </Box>
                 ))}
               </Flex>
@@ -162,9 +163,7 @@ export default function Menu({
             </VStack>
             <HStack px={2} justify="space-between">
               {socialData.map((social, index) => (
-                <Text key={index}>
-                  <MagnetLink href={social.link} text={social.title} />
-                </Text>
+                <MagnetLink key={index} href={social.link} text={social.title} />
               ))}
             </HStack>
           </Flex>

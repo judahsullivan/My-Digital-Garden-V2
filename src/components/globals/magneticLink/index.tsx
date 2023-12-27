@@ -2,11 +2,15 @@ import { Link, Box, chakra } from '@chakra-ui/react';
 import { useAnimate } from 'framer-motion'; // Import useAnimation instead of useAnimate
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { MotionBox, MotionText } from '../chakraMotion';
 
 export default function MagnetLink({ text, href, ...chakraProps }: { text: string; href: string }) {
   const [scope, animate] = useAnimate();
+  const [active, isActive] = useState(false);
+  const router = useRouter();
 
-  const Enter = () => {
+  const Active = () => {
     animate([
       [
         '.link',
@@ -21,12 +25,12 @@ export default function MagnetLink({ text, href, ...chakraProps }: { text: strin
       ]
     ]);
   };
-  const Exit = () => {
+  const inActive = () => {
     animate([
       [
         '.link',
         {
-          y: 0
+          y: -10
         },
         {
           type: 'spring',
@@ -37,40 +41,45 @@ export default function MagnetLink({ text, href, ...chakraProps }: { text: strin
       ]
     ]);
   };
+  useEffect(() => {
+    isActive(router.pathname === href); // Check if the link is active based on current route
+  }, [router.pathname, href]);
 
   return (
-    <chakra.span
+    <MotionBox
       ref={scope}
-      onMouseEnter={Enter}
-      as="span"
+      // onMouseEnter={Active}
       display="flex"
+      as={NextLink}
       overflowY={'hidden'}
-      onMouseLeave={Exit}
+      // onMouseLeave={inActive}
       position="relative"
+      href={href}
       className="description"
+      // animate={active ? Active : inActive}
+      layout
       {...chakraProps}
     >
-      <Link
-        _after={{
-          content: `'${text}'`,
-          position: 'absolute',
-          borderRadius: 'full',
-          textColor: 'accent.100',
-          top: '100%',
-          left: 0,
-          right: 0
-        }}
+      <MotionText
         position="relative"
-        as={NextLink}
         _hover={{
           textDecoration: 'none'
         }}
         display="block"
-        href={href}
         className="link"
       >
         {text}
-      </Link>
-    </chakra.span>
+      </MotionText>
+      <MotionText
+        position="absolute"
+        borderRadius="full"
+        textColor="accent.100"
+        top="100%"
+        left={0}
+        right={0}
+      >
+        {text}
+      </MotionText>
+    </MotionBox>
   );
 }

@@ -2,10 +2,6 @@ import { LinkProps, SocialProps } from '../types';
 
 export const linkData: LinkProps[] = [
   {
-    link: '/',
-    title: 'Home'
-  },
-  {
     link: '/about',
     title: 'About'
   },

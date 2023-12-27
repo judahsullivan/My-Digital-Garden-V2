@@ -52,6 +52,12 @@ export default defineType({
       ]
     }),
     defineField({
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean'
+    }),
+
+    defineField({
       name: 'categories',
       title: 'Categories',
       type: 'reference',

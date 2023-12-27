@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/react';
 
-export default function Blog() {
+export default function TechStack() {
   return (
     <Box>
-      <Box>Blog</Box>
+      <Box>Tech Stack</Box>
     </Box>
   );
 }
