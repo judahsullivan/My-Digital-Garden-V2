@@ -3,54 +3,47 @@ import { useRef } from 'react';
 import { useScroll } from 'framer-motion';
 import SkillCard from '@/components/globals/card/skillCard';
 
-interface ProjectProps {
+interface SkillProps {
+  number: string;
   title: string;
   description: string;
-  src: string;
-  link: string;
-  color: string;
 }
-
-const projects: ProjectProps[] = [
+const skills: SkillProps[] = [
   {
-    title: 'Matthias Leidinger',
+    number: '01',
+    title: 'Frontend Mastery',
     description:
-      'Originally hailing from Austria, Berlin-based photographer Matthias Leindinger is a young creative brimming with talent and ideas.',
-    src: 'rock.jpg',
-    link: 'https://www.ignant.com/2023/03/25/ad2186-matthias-leidingers-photographic-exploration-of-awe-and-wonder/',
-    color: '#BBACAF'
+      'Expertise in crafting captivating handcrafted designs using various frontend frameworks (Astro, Next.js, React, Svelte, Vue) tailored to diverse client needs.'
   },
   {
-    title: 'Clément Chapillon',
+    number: '02',
+    title: 'Backend Proficiency',
     description:
-      'This is a story on the border between reality and imaginary, about the contradictory feelings that the insularity of a rocky, arid, and wild territory provokes”—so French photographer Clément Chapillon describes his latest highly captivating project Les rochers fauves (French for ‘The tawny rocks’).',
-    src: 'tree.jpg',
-    link: 'https://www.ignant.com/2022/09/30/clement-chapillon-questions-geographical-and-mental-isolation-with-les-rochers-fauves/',
-    color: '#977F6D'
+      'Adept in Node.js, Prisma, and Firebase, capable of creating robust backend solutions to complement frontend development.'
   },
   {
-    title: 'Zissou',
+    number: '03',
+    title: 'CMS Expertise',
     description:
-      'Though he views photography as a medium for storytelling, Zissou’s images don’t insist on a narrative. Both crisp and ethereal, they’re encoded with an ambiguity—a certain tension—that lets the viewer find their own story within them.',
-    src: 'water.jpg',
-    link: 'https://www.ignant.com/2023/10/28/capturing-balis-many-faces-zissou-documents-the-sacred-and-the-mundane-of-a-fragile-island/',
-    color: '#C2491D'
+      'Proficient in utilizing headless CMS platforms (Sanity, Strapi, TinaCMS) and deploying on Netlify for seamless content management.'
   },
   {
-    title: 'Mathias Svold and Ulrik Hasemann',
+    number: '04',
+    title: 'Animation Enthusiast',
     description:
-      'The coastlines of Denmark are documented in tonal colors in a pensive new series by Danish photographers Ulrik Hasemann and Mathias Svold; an ongoing project investigating how humans interact with and disrupt the Danish coast.',
-    src: 'house.jpg',
-    link: 'https://www.ignant.com/2019/03/13/a-photographic-series-depicting-the-uncertain-future-of-denmarks-treasured-coastlines/',
-    color: '#B62429'
+      'Passionate about implementing engaging micro animations and interactions, enhancing user experience and retention.'
   },
   {
-    title: 'Mark Rammers',
+    number: '05',
+    title: 'Dedicated Work Ethic',
     description:
-      'Dutch photographer Mark Rammers has shared with IGNANT the first chapter of his latest photographic project, ‘all over again’—captured while in residency at Hektor, an old farm in Los Valles, Lanzarote. Titled ‘Beginnings’, the mesmerizing collection of images is a visual and meditative journey into the origins of regrets and the uncertainty of stepping into new unknowns.',
-    src: 'cactus.jpg',
-    link: 'https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/',
-    color: '#88A28D'
+      'Committed to maintaining high standards, investing 100% effort into every project, irrespective of its scope.'
+  },
+  {
+    number: '06',
+    title: 'Adaptability  ',
+    description:
+      'Skilled at adapting to new technologies and innovating solutions to meet evolving customer demands.'
   }
 ];
 
@@ -61,16 +54,16 @@ export default function Skills() {
     offset: ['start start', 'end end']
   });
   return (
-    <Box minH="100dvh" bg="blackAlpha.900">
-      {projects.map((project, i) => {
-        const targetScale = 1 - (projects.length - i) * 0.05;
+    <Box  bg="blackAlpha.900">
+      {skills.map((project, i) => {
+        const targetScale = 1;
         return (
           <SkillCard
             key={`p_${i}`}
             i={i}
             {...project}
             progress={scrollYProgress}
-            range={[i * 0.25, 1]}
+            range={[i * 0.45, 1]}
             targetScale={targetScale}
           />
         );

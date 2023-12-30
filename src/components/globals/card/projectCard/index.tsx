@@ -11,7 +11,7 @@ import {
   useColorModeValue,
   Stack
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import { LayoutGroup, motion, useAnimation } from 'framer-motion';
 import gsap from 'gsap';
 import { MotionBox } from '../../chakraMotion';
 
@@ -69,11 +69,16 @@ const TableCard = ({ title, category, src }: CardProps) => {
   const modalContainer = useRef<HTMLDivElement>(null);
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const controls = useAnimation();
 
   const manageModal = (active: boolean, index: number, x: number, y: number) => {
     if (active) {
       setHoveredIndex(index); // Update the hovered index
       setModalPosition({ x, y });
+      controls.start({
+        y: ['0%', '-100%'],
+        transition: { duration: 0.3 }
+      });
     } else {
       setHoveredIndex(null); // Reset the hovered index when mouse leaves
     }
@@ -81,18 +86,34 @@ const TableCard = ({ title, category, src }: CardProps) => {
   };
 
   return (
-    <Fragment>
+    <LayoutGroup>
       <Tr
         onMouseMove={(e) => {
           manageModal(true, index, e.clientX, e.clientY);
         }}
         position="relative"
+        as={motion.tr}
+        layout
         h="100px"
         cursor="pointer"
-        w="fit-content"
-        overflow="hidden"
+        w="full"
         m="auto"
         p={0}
+        _hover={{
+          _after: {
+            content: '""',
+            position: 'absolute',
+            overflow: 'hidden',
+            bg: 'accent.100',
+            inset: 3,
+            w: '100%',
+            h: '100px',
+            top: hoveredIndex !== null ? 0 : '100%',
+            left: 0,
+            transition: 'transform 0.3s ease-in-out', // Smooth slide-up and slide-down effect
+            zIndex: 1 // Ensuring it appears above the Tr content
+          }
+        }}
         onMouseEnter={(e) => {
           manageModal(true, index, e.clientX, e.clientY);
         }}
@@ -100,11 +121,41 @@ const TableCard = ({ title, category, src }: CardProps) => {
           manageModal(false, index, e.clientX, e.clientY);
         }}
       >
-        <Td fontSize="2xl" fontWeight={'bold'}>
+        <Td
+          fontSize="2xl"
+          zIndex={active ? 5 : 2} // Higher z-index when active to appear over the overlay
+          fontWeight={'bold'}
+          _hover={{ color: 'white' }} // Change text color to white on hover
+          style={{
+            color: active ? 'white' : '', // Change text color if active
+            position: 'relative' // Ensure the z-index works by setting position
+          }}
+        >
           {title}
         </Td>
-        <Td>{category}</Td>
-        <Td>2023</Td>
+        <Td
+          zIndex={active ? 5 : 2} // Higher z-index when active to appear over the overlay
+          fontWeight={'bold'}
+          _hover={{ color: 'white' }} // Change text color to white on hover
+          style={{
+            color: active ? 'white' : '', // Change text color if active
+            position: 'relative' // Ensu
+          }}
+        >
+          {category}
+        </Td>
+        <Td
+          zIndex={active ? 5 : 2} // Higher z-index when active to appear over the overlay
+          fontWeight={'bold'}
+          _hover={{ color: 'white' }} // Change text color to white on hover
+          style={{
+            color: active ? 'white' : '', // Change text color if active
+            position: 'relative' // Ensu
+          }}
+        >
+          2023
+        </Td>
+
         <Td>
           <MotionBox
             ref={modalContainer}
@@ -119,9 +170,10 @@ const TableCard = ({ title, category, src }: CardProps) => {
             bg="blackAlpha.800"
             pointerEvents="none"
             overflow="hidden"
-            zIndex={3}
+            zIndex={6}
             className="modalContainer"
             style={{
+              textColor: active ? 'white' : '',
               transformOrigin: 'center',
               position: 'fixed',
               top: `${modalPosition.y - (hoveredIndex !== null ? hoveredIndex * 150 : 0)}px`,
@@ -153,7 +205,7 @@ const TableCard = ({ title, category, src }: CardProps) => {
           </MotionBox>
         </Td>
       </Tr>
-    </Fragment>
+    </LayoutGroup>
   );
 };
 

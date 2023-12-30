@@ -46,7 +46,7 @@ export default function RecentProjects({ projects }: { projects: ProjectPayLoad[
       textAlign="center"
     >
       <Stack textAlign="left" w="full" direction="column" maxW={'fit-content'}>
-        <Flex direction="column" w="fit-content">
+        <Flex justify={'end'} direction="column" w="fit-content">
           <Text fontSize={'2xl'} fontWeight={600} lineHeight="none" w="full" mx="auto">
             {'Discover my latest Ventures'.split(' ').map((discover, index) => (
               <chakra.span

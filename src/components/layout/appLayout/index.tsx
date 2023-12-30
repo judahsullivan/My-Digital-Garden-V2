@@ -10,8 +10,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       <Navigation />
       <LenisProvider
         options={{
-          direction: 'vertical',
-          gestureDirection: 'vertical',
           smooth: true,
           smoothTouch: false,
           touchMultiplier: 2,
@@ -22,7 +20,9 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           smoothWheel: true
         }}
       >
-        <Box>{children}</Box>
+        <Box minH="100dvh" w="full">
+          {children}
+        </Box>
       </LenisProvider>
       <Footer />
     </Fragment>

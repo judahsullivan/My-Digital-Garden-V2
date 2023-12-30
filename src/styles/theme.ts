@@ -1,11 +1,10 @@
-import { StyleFunctionProps, extendTheme,type ThemeConfig } from '@chakra-ui/react';
+import { StyleFunctionProps, extendTheme, type ThemeConfig } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
 
 const config: ThemeConfig = {
   initialColorMode: 'light',
-  useSystemColorMode: false,
-}
-
+  useSystemColorMode: false
+};
 const theme = extendTheme({
   config,
   styles: {
@@ -15,6 +14,15 @@ const theme = extendTheme({
         textColor: mode('#2E2C2F', '#f9f9f9')(props)
       }
     })
+  },
+  breakpoints: {
+ base: "370px",
+  sm: "668px",
+  md: "1000px",
+  lg: "1200px",
+  xl: "1468px",
+  "2xl": "1600px",
+ 
   },
   space: {
     px: '1px',

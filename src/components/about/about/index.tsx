@@ -6,7 +6,6 @@ import { useScroll, useTransform } from 'framer-motion';
 import AboutHeroAnimations from '../animations/hero';
 
 export default function AboutIndex() {
-
   const description =
     'Enhancing brand presence through front-end expertise and elegant design. Collaboratively shaping digital experiences, and setting a fresh standard in the development world.';
   const father =
@@ -18,28 +17,33 @@ export default function AboutIndex() {
     <Flex
       maxW="1200"
       mx="auto"
-      pt={24}
-      pb={12}
-      px={2}
       display={'flex'}
+      minH="100dvh"
       justify="center"
       direction={'column'}
       w="full"
+      p={2}
       textAlign="center"
     >
-      <Stack w="full" direction="column" maxW={'fit-content'}>
-        <Heading fontSize={'4xl'} color={'accent.100'} lineHeight="none" w="full" mx="auto">
-          About Me
+      <Stack pt={'4rem'} w="fit-content" direction="column" maxW={'fit-content'}>
+        <Heading
+          fontSize={{ base: '4xl', md: '6xl', lg: '6xl' }}
+          maxW="2xl"
+          color={'accent.100'}
+          textAlign="left"
+          lineHeight={1.3}
+          w="full"
+          mx="auto"
+        >
+          Developing the future by Crafting Digital Experiences
         </Heading>
-        <chakra.hr borderColor="blackAlpha.800" border="1" w="full" />
+        <chakra.hr borderColor="blackAlpha.800" border="1" w="100%" />
       </Stack>
 
       <Flex
         maxW={1000}
         mx="auto"
-        pt={24}
         pb={12}
-        px={2}
         display={'flex'}
         justify="center"
         direction={'column'}
@@ -59,7 +63,7 @@ export default function AboutIndex() {
           }}
         >
           <Flex
-            w={{ base: 'full', md: '60%' }}
+            w={{ base: 'full', md: 'full', lg: '60%' }}
             justify="center"
             direction="column"
             align="center"
@@ -67,12 +71,12 @@ export default function AboutIndex() {
           >
             <ScrollImage
               src="https://judahsullivan.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fabout.01b991c2.jpg&w=640&q=75"
-              width={'400px'}
-              height={'600px'}
+              width={'300px'}
+              height={'500px'}
             />
           </Flex>
 
-          <Stack w={{ base: 'full', md: '40%' }} direction="column" spacing={6}>
+          <Stack w={{ base: 'full', lg: '40%' }} p={2} direction="column" spacing={6}>
             <Stack spacing={2} textAlign={'left'} w="fit-content" direction="column">
               <Stack spacing={0} textAlign={'left'} w="fit-content" direction="column">
                 <Text fontSize={'2xl'} fontWeight={700}>
@@ -92,7 +96,7 @@ export default function AboutIndex() {
           pt={10}
           pb={20}
           gap={20}
-          direction={{ base: 'column', md: 'row' }}
+          direction={{ base: 'column', lg: 'row' }}
           justify="space-between"
           align="center"
           className="parallax-content"
@@ -124,8 +128,8 @@ export default function AboutIndex() {
           >
             <ScrollImage
               src="https://avatars.githubusercontent.com/u/106212053?v=4"
-              width={'400px'}
-              height={'500px'}
+              width={'300px'}
+              height={'400px'}
             />
           </Flex>
         </Flex>

@@ -17,7 +17,7 @@ export default function Main({ projects, articles }: HomeProps) {
     <Fragment>
       <Home />
       <DescriptionSection />
-      <RecentProjects projects={projects} />
+      {/* <RecentProjects projects={projects} /> */}
       <FeaturedArticles articles={articles} />
     </Fragment>
   );

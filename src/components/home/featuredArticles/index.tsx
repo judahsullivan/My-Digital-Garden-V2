@@ -17,7 +17,7 @@ import {
   Tbody,
   SimpleGrid
 } from '@chakra-ui/react';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import AnimatedButton from '@/components/globals/animatedButton';
 import { PostPayLoad } from '../../../../types';
 import { useResize } from '@/lib/useResize';
@@ -25,28 +25,28 @@ import { ColumnCard, TableCard } from '@/components/globals/card/projectCard';
 
 export default function FeaturedArticles({ articles }: { articles: PostPayLoad[] }) {
   const { viewMode } = useResize();
+  const [hovered, setIsHovered] = useState();
   const title = 'Journey of my Thoughtful Explorations';
 
   const description =
     "Embark on a voyage through my mind's depths. Each entry a revelation, weaving curiosity and introspection. Explore diverse musings and insightful reflections. Join me in navigating the maze of thoughts, seeking meaning together.";
   return (
-    <Stack display="flex" flexDir="column" w="full" minH="100dvh">
-      <Stack
-        pt={24}
-        pb={12}
-        px={2}
-        gap={20}
-        flexDirection={'column'}
-        mx="auto"
-        display="flex"
-        maxW={1200}
-        w="full"
-        minH="100dvh"
-        justify="space-between"
-      >
-        <Stack textAlign="left" w="full" direction="column" maxW={'fit-content'}>
-          <Flex direction="column" w="fit-content">
-            <Text fontSize={'2xl'} fontWeight={600} lineHeight="none" w="full" mx="auto">
+    <Flex
+      pt={24}
+      pb={12}
+      px={2}
+      gap={20}
+      mx="auto"
+      display="flex"
+      direction="column"
+      maxW={1200}
+      w="full"
+      minH="100dvh"
+    >
+      <Box w="100%" justifyContent="end" textAlign="end" display="flex">
+        <Flex gap={5} w="fit-content" direction="column">
+          <Box w="fit-content">
+            <Text fontSize={'2xl'} textAlign="left" fontWeight={600} lineHeight="none">
               {title.split(' ').map((title, index) => (
                 <chakra.span
                   key={index}
@@ -63,9 +63,16 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
               ))}
             </Text>
             <chakra.hr borderColor="blackAlpha.800" className="" border="1" w="full" />
-          </Flex>
+          </Box>
 
-          <Text fontSize="lg" h="fit-content" lineHeight="1.3" maxW="lg">
+          <Text
+            fontSize="lg"
+            h="fit-content"
+            textAlign={'left'}
+            placeSelf={'end'}
+            lineHeight="1.3"
+            maxW="lg"
+          >
             {description.split(' ').map((desc, index) => (
               <chakra.span key={index} pl={1} overflow="hidden" display="inline-block">
                 <chakra.span className="" display="inline-block">
@@ -74,27 +81,29 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
               </chakra.span>
             ))}
           </Text>
-        </Stack>
-        <Flex direction={'column'} w="full" align={'center'} justify={'center'}>
-          {viewMode === 'grid' ? (
-            <Fragment>
-              <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
-                Featured Articles
-              </Heading>
-              <SimpleGrid columns={{ base: 1, md: 2 }} gap={10}>
-                {articles.map((article, index) => (
-                  <Fragment key={index}>
-                    <ColumnCard
-                      title={article.title}
-                      src={article.mainImage}
-                      category={article.category.title}
-                    />
-                  </Fragment>
-                ))}
-              </SimpleGrid>
-            </Fragment>
-          ) : (
-            <TableContainer mx={'auto'} maxW={1200} w="full">
+        </Flex>
+      </Box>
+      <Flex direction={'column'} w="full" align={'center'} justify={'center'}>
+        {viewMode === 'grid' ? (
+          <Fragment>
+            <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
+              Featured Articles
+            </Heading>
+            <SimpleGrid columns={{ base: 1, md: 2 }} gap={10}>
+              {articles.map((article, index) => (
+                <Fragment key={index}>
+                  <ColumnCard
+                    title={article.title}
+                    src={article.mainImage}
+                    category={article.category.title}
+                  />
+                </Fragment>
+              ))}
+            </SimpleGrid>
+          </Fragment>
+        ) : (
+          <Box w="full">
+            <TableContainer justifySelf={'start'} w="60%">
               <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
                 Featured Articles
               </Heading>
@@ -107,7 +116,11 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
                     <Th>Date</Th>
                   </Tr>
                 </Thead>
-                <Tbody>
+                <Tbody
+                  _groupHover={{
+                    bgColor: 'accent.100'
+                  }}
+                >
                   {articles.map((article, index) => (
                     <Fragment key={index}>
                       <TableCard
@@ -120,15 +133,15 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
                 </Tbody>
               </Table>
             </TableContainer>
-          )}
-
-          <Box placeSelf={'center'}>
-            <AnimatedButton href="/projects" width={'165px'} height={'60px'}>
-              View All Articles
-            </AnimatedButton>
           </Box>
-        </Flex>
-      </Stack>
-    </Stack>
+        )}
+
+        <Box pt={5} placeSelf={'center'}>
+          <AnimatedButton href="/projects" width={'165px'} height={'60px'}>
+            View All Articles
+          </AnimatedButton>
+        </Box>
+      </Flex>
+    </Flex>
   );
 }

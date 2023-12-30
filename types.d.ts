@@ -114,3 +114,11 @@ interface Category {
   title: string;
   description?: string;
 }
+
+interface TechStackProps {
+  name: string;
+  description: string;
+  link: string;
+  type: string;
+  image: string;
+}
