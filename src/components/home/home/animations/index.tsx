@@ -12,8 +12,21 @@ export default function HomeAnimations() {
           y: ['100%', '0%']
         },
         {
-          duration: 0.875,
+          duration: 0.675,
           delay: stagger(0.0185),
+          at: '<',
+          ease: 'easeInOut'
+        }
+      ],
+      [
+        '.headingtwo',
+        {
+          y: ['100%', '0%']
+        },
+        {
+          duration: 0.675,
+          delay: stagger(0.0185),
+          at: '<',
           ease: 'easeInOut'
         }
       ],

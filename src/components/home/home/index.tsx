@@ -34,7 +34,6 @@ export default function Home() {
       direction="column"
       align="center"
       pos="relative"
-      p={4}
       textAlign="center"
       width="full"
     >
@@ -45,8 +44,9 @@ export default function Home() {
               fontWeight={'extrabold'}
               letterSpacing="tight"
               textTransform="uppercase"
-              fontSize={'12dvw'}
+              fontSize={{ base: '54px', lg: '12dvw' }}
               textColor="accent.100"
+              px={0}
               lineHeight="none"
               w="full"
             >
@@ -63,13 +63,13 @@ export default function Home() {
               textColor="accent.100"
               letterSpacing="tight"
               textTransform="uppercase"
-              fontSize={'12dvw'}
+              fontSize={{ base: '54px', lg: '12dvw' }}
               lineHeight="none"
               w="full"
             >
               {enthusiast.split('').map((heading, index) => (
                 <chakra.span key={index} display="inline-block" overflow="hidden">
-                  <chakra.span className="heading" display="inline-block">
+                  <chakra.span className="headingtwo" display="inline-block">
                     {heading}
                   </chakra.span>
                 </chakra.span>

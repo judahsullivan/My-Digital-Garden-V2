@@ -1,7 +1,8 @@
-import { Box } from '@chakra-ui/react';
-import { useRef } from 'react';
+import { Box, Heading } from '@chakra-ui/react';
+import { useEffect, useRef } from 'react';
 import { useScroll } from 'framer-motion';
 import SkillCard from '@/components/globals/card/skillCard';
+import Lenis from '@studio-freight/react-lenis';
 
 interface SkillProps {
   number: string;
@@ -48,26 +49,9 @@ const skills: SkillProps[] = [
 ];
 
 export default function Skills() {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start start', 'end end']
-  });
-  return (
-    <Box  bg="blackAlpha.900">
-      {skills.map((project, i) => {
-        const targetScale = 1;
-        return (
-          <SkillCard
-            key={`p_${i}`}
-            i={i}
-            {...project}
-            progress={scrollYProgress}
-            range={[i * 0.45, 1]}
-            targetScale={targetScale}
-          />
-        );
-      })}
-    </Box>
-  );
-}
+  return(
+ <Box display='flex' alignItems="center" justifyContent="center" minH="100dvh" bgColor={'blackAlpha.900'} width="full" p={2}>
+      <Heading textColor="white">My Skills</Heading>
+  </Box>
+
+  )}

@@ -23,7 +23,7 @@ import RecentProjectsAnimation from '../animations/recentProjects';
 import { useResize } from '@/lib/useResize';
 
 export default function RecentProjects({ projects }: { projects: ProjectPayLoad[] }) {
-  const container = RecentProjectsAnimation();
+  const contentContainer = RecentProjectsAnimation();
   const { viewMode } = useResize();
 
   const description =
@@ -33,51 +33,52 @@ export default function RecentProjects({ projects }: { projects: ProjectPayLoad[
 
   return (
     <Flex
-      ref={container}
-      mx="auto"
+      ref={contentContainer}
       pt={24}
       pb={12}
       px={2}
-      display={'flex'}
+      gap={20}
+      mx="auto"
+      display="flex"
+      direction="column"
       maxW={1200}
-      justify="center"
-      direction={'column'}
       w="full"
-      textAlign="center"
+      minH="100dvh"
     >
-      <Stack textAlign="left" w="full" direction="column" maxW={'fit-content'}>
-        <Flex justify={'end'} direction="column" w="fit-content">
-          <Text fontSize={'2xl'} fontWeight={600} lineHeight="none" w="full" mx="auto">
-            {'Discover my latest Ventures'.split(' ').map((discover, index) => (
-              <chakra.span
-                key={index}
-                overflow="hidden"
-                display="inline-block"
-                pl={1}
-                maxW="md"
-                fontSize={'2xl'}
-              >
-                <chakra.span className="title" display="inline-block">
-                  {discover}{' '}
+      <Box w="100%" display="flex">
+        <Flex gap={5} w="fit-content" direction="column">
+          <Box w="fit-content">
+            <Text fontSize={'2xl'} textAlign="left" fontWeight={600} lineHeight="none">
+              {'Discover my Latest Creations'.split(' ').map((title, index) => (
+                <chakra.span
+                  key={index}
+                  overflow="hidden"
+                  display="inline-block"
+                  pl={1}
+                  maxW="md"
+                  fontSize={'2xl'}
+                >
+                  <chakra.span className="contenttitle" display="inline-block">
+                    {title}{' '}
+                  </chakra.span>
+                </chakra.span>
+              ))}
+            </Text>
+            <chakra.hr borderColor="blackAlpha.800" className="contenthr" border="1" w="full" />
+          </Box>
+
+          <Text fontSize="lg" h="fit-content" textAlign={'left'} lineHeight="1.3" maxW="lg">
+            {description.split(' ').map((desc, index) => (
+              <chakra.span key={index} pl={1} overflow="hidden" display="inline-block">
+                <chakra.span className="contentdescription" display="inline-block">
+                  {desc}{' '}
                 </chakra.span>
               </chakra.span>
             ))}
           </Text>
-          <chakra.hr borderColor="blackAlpha.800" className="hr" border="1" w="full" />
         </Flex>
-
-        <Text fontSize="lg" h="fit-content" lineHeight="1.3" maxW="md">
-          {description.split(' ').map((desc, index) => (
-            <chakra.span key={index} pl={1} overflow="hidden" display="inline-block">
-              <chakra.span className="descr" display="inline-block">
-                {desc}{' '}
-              </chakra.span>
-            </chakra.span>
-          ))}
-        </Text>
-      </Stack>
-
-      <Flex pt={24} pb={12} gap={10} direction={'column'} w="full">
+      </Box>
+      <Flex direction={'column'} w="full" align={'center'} justify={'center'}>
         {viewMode === 'grid' ? (
           <Fragment>
             <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
@@ -96,35 +97,41 @@ export default function RecentProjects({ projects }: { projects: ProjectPayLoad[
             </SimpleGrid>
           </Fragment>
         ) : (
-          <TableContainer w={'60%'} placeSelf="end">
-            <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
-              Recent Projects
-            </Heading>
+          <Box w="full">
+            <TableContainer justifySelf={'start'}>
+              <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
+                Recent Projects
+              </Heading>
 
-            <Table mt={5} colorScheme="black" variant="unstyled">
-              <Thead>
-                <Tr>
-                  <Th w="50%">Title</Th>
-                  <Th>Category</Th>
-                  <Th>Date</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {projects.map((project, index) => (
-                  <Fragment key={index}>
-                    <TableCard
-                      src={project.mainImage}
-                      title={project.title}
-                      category={project.projectCategory.title}
-                    />
-                  </Fragment>
-                ))}
-              </Tbody>
-            </Table>
-          </TableContainer>
+              <Table mt={5} colorScheme="black" variant="unstyled">
+                <Thead>
+                  <Tr>
+                    <Th w="50%">Title</Th>
+                    <Th>Category</Th>
+                    <Th>Date</Th>
+                  </Tr>
+                </Thead>
+                <Tbody
+                  _groupHover={{
+                    bgColor: 'accent.100'
+                  }}
+                >
+                  {projects.map((project, index) => (
+                    <Fragment key={index}>
+                      <TableCard
+                        src={project.mainImage}
+                        title={project.title}
+                        category={project.projectCategory.title}
+                      />
+                    </Fragment>
+                  ))}
+                </Tbody>
+              </Table>
+            </TableContainer>
+          </Box>
         )}
 
-        <Box placeSelf={'center'}>
+        <Box pt={5} placeSelf={'center'}>
           <AnimatedButton href="/projects" width={'165px'} height={'60px'}>
             View All Projects
           </AnimatedButton>

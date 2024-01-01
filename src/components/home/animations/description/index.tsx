@@ -14,8 +14,9 @@ export default function DescriptionAnimations() {
           width: isInView ? ['0%', '100%'] : ['100%', '0%']
         },
         {
-          duration: 0.875,
+          duration: 0.575,
           delay: stagger(0.0185),
+          at: '<',
           ease: 'easeInOut'
         }
       ],
@@ -25,7 +26,7 @@ export default function DescriptionAnimations() {
           y: isInView ? ['100%', '0%'] : ['0%', '100%']
         },
         {
-          duration: 0.875,
+          duration: 0.675,
           delay: stagger(0.0485),
           ease: 'easeInOut'
         }
@@ -36,7 +37,8 @@ export default function DescriptionAnimations() {
           y: isInView ? ['100%', '0%'] : ['0%', '100%']
         },
         {
-          duration: 0.875,
+          duration: 0.675,
+          at: '<',
           delay: stagger(0.0185),
           ease: 'easeInOut'
         }
@@ -48,13 +50,13 @@ export default function DescriptionAnimations() {
           opacity: isInView ? [0, 1] : [1, 0]
         },
         {
-          duration: 0.875,
+          duration: 0.675,
           delay: stagger(0.0185),
           ease: 'easeInOut'
         }
       ]
     ];
-    animate(sequence, { delay: 1 });
+    animate(sequence, { delay: 0.5 });
   }, [isInView]);
 
   return descref;

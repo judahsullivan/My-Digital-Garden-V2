@@ -1,5 +1,5 @@
 import { useMotionTemplate, useScroll, useSpring, useTransform } from 'framer-motion';
-import { Flex, chakra } from '@chakra-ui/react';
+import { Flex, Heading, chakra, useMediaQuery } from '@chakra-ui/react';
 import { MotionBox, MotionText } from '@/components/globals/chakraMotion';
 import { useRef } from 'react';
 
@@ -33,19 +33,22 @@ export default function ZoomOut() {
       <MotionBox
         style={{ scale }}
         transformOrigin={{
-          base: '14% 23.5%',
-          lg: '10.2% 32%',
-          xl: '7% 21.5%'
+          base: '50% 90.6%',
+          md: '51% 77.5%',
+          lg: '50% 76%',
+          xl: '50% 96%'
         }}
         h="100dvh"
+        maxW={1200}
         position="sticky"
         left={0}
         top={0}
       >
         <MotionText
-          style={{ translateY: '50%', translateX: '0%' }}
+          style={{ translateY: '150%', translateX: '0' }}
           noOfLines={1.3}
           textAlign="center"
+          as={Heading}
           textColor="blackAlpha.900"
           fontSize={{ base: '6xl', md: '8xl' }}
         >

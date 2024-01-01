@@ -10,19 +10,10 @@ const theme = extendTheme({
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {
-        bgColor: mode('#f9f9f9', '#151415')(props),
-        textColor: mode('#2E2C2F', '#f9f9f9')(props)
+        bgColor: ' #f9f9f9',
+        textColor: '#2E2C2F'
       }
     })
-  },
-  breakpoints: {
- base: "370px",
-  sm: "668px",
-  md: "1000px",
-  lg: "1200px",
-  xl: "1468px",
-  "2xl": "1600px",
- 
   },
   space: {
     px: '1px',

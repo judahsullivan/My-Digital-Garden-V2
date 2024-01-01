@@ -66,7 +66,7 @@ interface ModalState {
 const TableCard = ({ title, category, src }: CardProps) => {
   const [modal, setModal] = useState<ModalState>({ active: false, index: 0 });
   const { active, index } = modal;
-  const modalContainer = useRef<HTMLDivElement>(null);
+  const modalContainer = useRef<HTMLTableCellElement>(null);
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const controls = useAnimation();
@@ -156,52 +156,44 @@ const TableCard = ({ title, category, src }: CardProps) => {
           2023
         </Td>
 
-        <Td>
+        <Td
+          as={motion.td}
+          ref={modalContainer}
+          variants={scaleAnimation}
+          initial="closed"
+          animate={active || hoveredIndex !== null ? 'enter' : 'closed'}
+          height="300px"
+          position="fixed"
+          width={'300px'}
+          top={`${modalPosition.y - (hoveredIndex !== null ? hoveredIndex * 150 : 0)}px`}
+          left={`${modalPosition.x}px`}
+          bg="blackAlpha.800"
+          pointerEvents="none"
+          overflow="hidden"
+          zIndex={6}
+          transformOrigin="center"
+          className="modalContainer"
+        >
           <MotionBox
-            ref={modalContainer}
-            variants={scaleAnimation}
-            initial="closed"
-            animate={active || hoveredIndex !== null ? 'enter' : 'closed'}
-            height="300px"
-            position="fixed"
-            width={'300px'}
-            top={`${modalPosition.y - (hoveredIndex !== null ? hoveredIndex * 150 : 0)}px`}
-            left={`${modalPosition.x}px`}
-            bg="blackAlpha.800"
-            pointerEvents="none"
-            overflow="hidden"
-            zIndex={6}
-            className="modalContainer"
+            height="100%"
+            width="100%"
             style={{
-              textColor: active ? 'white' : '',
-              transformOrigin: 'center',
-              position: 'fixed',
-              top: `${modalPosition.y - (hoveredIndex !== null ? hoveredIndex * 150 : 0)}px`,
-              left: `${modalPosition.x}px`,
-              ...scaleAnimation[active || hoveredIndex !== null ? 'enter' : 'closed']
+              top: `${index} * -100 + '%'`,
+              transition: 'top 0.5s cubic-bezier(0.76, 0, 0.24, 1);' // Slide up effect
             }}
+            p={5}
+            position="relative"
           >
-            <MotionBox
+            <Box
               height="100%"
               width="100%"
-              style={{
-                top: `${index} * -100 + '%'`,
-                transition: 'top 0.5s cubic-bezier(0.76, 0, 0.24, 1);' // Slide up effect
-              }}
-              p={5}
-              position="relative"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              className="MODAL"
             >
-              <Box
-                height="100%"
-                width="100%"
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-                className="MODAL"
-              >
-                <Image src={src} alt="" objectFit="cover" h="auto" />
-              </Box>
-            </MotionBox>
+              <Image src={src} alt="" objectFit="cover" h="auto" />
+            </Box>
           </MotionBox>
         </Td>
       </Tr>

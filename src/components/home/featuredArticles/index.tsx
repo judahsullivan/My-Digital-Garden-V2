@@ -22,8 +22,11 @@ import AnimatedButton from '@/components/globals/animatedButton';
 import { PostPayLoad } from '../../../../types';
 import { useResize } from '@/lib/useResize';
 import { ColumnCard, TableCard } from '@/components/globals/card/projectCard';
+import RecentProjectsAnimation from '../animations/recentProjects';
+import FeaturedArticlesAnimation from '../animations/featuredArticles';
 
 export default function FeaturedArticles({ articles }: { articles: PostPayLoad[] }) {
+  const featuredContainer = FeaturedArticlesAnimation();
   const { viewMode } = useResize();
   const [hovered, setIsHovered] = useState();
   const title = 'Journey of my Thoughtful Explorations';
@@ -34,7 +37,9 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
     <Flex
       pt={24}
       pb={12}
+      ref={featuredContainer}
       px={2}
+
       gap={20}
       mx="auto"
       display="flex"
@@ -43,7 +48,7 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
       w="full"
       minH="100dvh"
     >
-      <Box w="100%" justifyContent="end" textAlign="end" display="flex">
+      <Box w="100%" display="flex">
         <Flex gap={5} w="fit-content" direction="column">
           <Box w="fit-content">
             <Text fontSize={'2xl'} textAlign="left" fontWeight={600} lineHeight="none">
@@ -65,14 +70,7 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
             <chakra.hr borderColor="blackAlpha.800" className="" border="1" w="full" />
           </Box>
 
-          <Text
-            fontSize="lg"
-            h="fit-content"
-            textAlign={'left'}
-            placeSelf={'end'}
-            lineHeight="1.3"
-            maxW="lg"
-          >
+          <Text fontSize="lg" h="fit-content" textAlign={'left'} lineHeight="1.3" maxW="lg">
             {description.split(' ').map((desc, index) => (
               <chakra.span key={index} pl={1} overflow="hidden" display="inline-block">
                 <chakra.span className="" display="inline-block">
@@ -103,7 +101,7 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
           </Fragment>
         ) : (
           <Box w="full">
-            <TableContainer justifySelf={'start'} w="60%">
+            <TableContainer justifySelf={'start'}>
               <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
                 Featured Articles
               </Heading>
@@ -137,7 +135,7 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
         )}
 
         <Box pt={5} placeSelf={'center'}>
-          <AnimatedButton href="/projects" width={'165px'} height={'60px'}>
+          <AnimatedButton href="/blog" width={'165px'} height={'60px'}>
             View All Articles
           </AnimatedButton>
         </Box>

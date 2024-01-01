@@ -6,6 +6,7 @@ import { PostPayLoad, ProjectPayLoad } from '../../types';
 import DescriptionSection from '@/components/home/description';
 import FeaturedArticles from '@/components/home/featuredArticles';
 import { getFeaturedArticles } from '../../sanity/queries/articleQueries';
+import PageLayout from '@/components/layout/pageLayout';
 
 interface HomeProps {
   projects: ProjectPayLoad[];
@@ -14,12 +15,12 @@ interface HomeProps {
 
 export default function Main({ projects, articles }: HomeProps) {
   return (
-    <Fragment>
+    <PageLayout>
       <Home />
       <DescriptionSection />
-      {/* <RecentProjects projects={projects} /> */}
+      <RecentProjects projects={projects} />
       <FeaturedArticles articles={articles} />
-    </Fragment>
+    </PageLayout>
   );
 }
 

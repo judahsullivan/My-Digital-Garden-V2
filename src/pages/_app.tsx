@@ -9,6 +9,7 @@ import Preloader from '@/components/loader';
 import { AnimatePresence } from 'framer-motion';
 import AppLayout from '@/components/layout/appLayout';
 import { useRouter } from 'next/router';
+import { MotionBox } from '@/components/globals/chakraMotion';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isLoading, setisLoading] = useState(true);
@@ -20,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <ChakraProvider theme={theme}>
       <FontsGlobal />
       {isLoading ? (
-        <AnimatePresence onExitComplete={() => window.scrollTo(0, 0)} mode="wait">
+        <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
           <Preloader onLoadingComplete={() => setisLoading(false)} />
         </AnimatePresence>
       ) : (
@@ -29,7 +30,13 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           ) : (
             <AppLayout>
-              <Component {...pageProps} />
+              <AnimatePresence
+                mode="wait"
+                initial={false}
+                onExitComplete={() => window.scrollTo(0, 0)}
+              >
+                <Component key={router.route} {...pageProps} />
+              </AnimatePresence>
             </AppLayout>
           )}
         </Fragment>

@@ -35,11 +35,10 @@ export default function ZoomInText() {
       <MotionBox
         style={{ scale }}
         transformOrigin={{
-          base: '20.3% 27.5%',
-          sm: '23.3% 20.5%',
-          md: '47.7% 29%',
-          lg: '47.7% 29%',
-          xl: '39.4% 17%'
+          base: '24% 35.34%',
+          md: '32% 30.5%',
+          lg: '25% 18.5%',
+          xl: '11.5% 20.5%'
         }}
         h="100dvh"
         position="sticky"
@@ -47,9 +46,10 @@ export default function ZoomInText() {
         top={0}
       >
         <MotionText
-          style={{ translateY: '-10%', translateX: '0%' }} // Apply the textXScale transformation here
+          style={{ textXScale, translateY: '-10%', translateX: '0%' }} // Apply the textXScale transformation here
           noOfLines={1.3}
           textAlign="center"
+          as={Heading}
           textColor="blackAlpha.900"
           fontSize={{ base: '6xl', md: '8xl' }}
         >

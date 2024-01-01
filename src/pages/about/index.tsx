@@ -7,21 +7,24 @@ import ZoomOut from '@/components/about/zoomSection/zoomOut';
 import Experience from '@/components/about/expierience';
 import { techstacks } from '@/utils/data';
 import { TechStackProps } from '../../../types';
+import PageLayout from '@/components/layout/pageLayout';
+import Philosphy from '@/components/about/philosphy';
 
 interface StackProps {
-  techstacks: TechStackProps;
+  techstacks: TechStackProps[]
 }
 
 export default function About({ techstacks }: StackProps) {
   return (
-    <Fragment>
+    <PageLayout>
       <AboutIndex />
       <ZoomInText />
+      <Philosphy/>
       <Skills />
       <TechStack techstacks={techstacks} />
       <ZoomOut />
       <Experience />
-    </Fragment>
+    </PageLayout>
   );
 }
 

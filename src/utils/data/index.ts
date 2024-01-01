@@ -150,3 +150,12 @@ export const techstacks = [
     image: '/assets/images/skills/figma.png'
   }
 ];
+export const meta = {
+  siteTitle: 'Judah Sullivan',
+  siteDescription:
+    'Welcome to my Portfolio and Blog. Where I share my progress and knowledge as a Front-End Engineer.',
+  defaultKeywords: [
+    'Next.js, Tailwindcss, Portfolio, Web development, front-end development, back-end development, full-stack development,  React, JavaScript, HTML, CSS, Git, Agile, Scrum, responsive design'
+  ]
+};
+

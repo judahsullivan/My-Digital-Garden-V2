@@ -1,9 +1,14 @@
-import { Box, Heading } from '@chakra-ui/react';
+import { Flex,Heading,Text  } from '@chakra-ui/react';
+import PageLayout from '@/components/layout/pageLayout';
 
 export default function Contact() {
   return (
-    <Box>
-      <Heading>Contact</Heading>
-    </Box>
+
+    <PageLayout>
+      <Flex minH="100dvh" w="full" align="center" direction="column" justify="center">
+        <Heading>Article Page </Heading>
+        <Text>Still Under Construction</Text>
+      </Flex>
+    </PageLayout>
   );
 }

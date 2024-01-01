@@ -5,9 +5,9 @@ import { useTransform, motion, useScroll } from 'framer-motion';
 import { useRef } from 'react';
 
 const SkillCard = ({ i, title, description, number, progress, range, targetScale }: any) => {
-  const container = useRef(null);
+  const cardContainer = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: container,
+    target: cardContainer,
     offset: ['start end', 'start start']
   });
 
@@ -15,6 +15,7 @@ const SkillCard = ({ i, title, description, number, progress, range, targetScale
 
   return (
     <Flex
+      ref={cardContainer}
       w="full"
       minH="100dvh"
       align="cener"

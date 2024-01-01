@@ -6,6 +6,8 @@ import { useScroll, useTransform } from 'framer-motion';
 import AboutHeroAnimations from '../animations/hero';
 
 export default function AboutIndex() {
+  const pageTitle = 'About Me';
+  const pageDescription = "Embarking on New Frontiers: Designing Tomorrow's Digital Experiences";
   const description =
     'Enhancing brand presence through front-end expertise and elegant design. Collaboratively shaping digital experiences, and setting a fresh standard in the development world.';
   const father =
@@ -15,33 +17,32 @@ export default function AboutIndex() {
 
   return (
     <Flex
-      maxW="1200"
+      maxW={1200}
       mx="auto"
+      pt="12rem"
       display={'flex'}
       minH="100dvh"
+      align="center"
       justify="center"
       direction={'column'}
       w="full"
       p={2}
-      textAlign="center"
     >
-      <Stack pt={'4rem'} w="fit-content" direction="column" maxW={'fit-content'}>
-        <Heading
-          fontSize={{ base: '4xl', md: '6xl', lg: '6xl' }}
-          maxW="2xl"
-          color={'accent.100'}
-          textAlign="left"
-          lineHeight={1.3}
-          w="full"
-          mx="auto"
-        >
-          Developing the future by Crafting Digital Experiences
-        </Heading>
-        <chakra.hr borderColor="blackAlpha.800" border="1" w="100%" />
+      <Stack pt={'12rem'} spacing={10}>
+        <Flex justify="space-between" w="full" direction={{ base: 'column', md: 'row' }}>
+          <Heading textColor="accent.100" fontSize={{ base: '6xl', md: '8xl' }} maxW="2xl">
+            {pageTitle}
+          </Heading>
+          <Text fontSize={{ base: '3xl', md: '5xl' }} maxW="2xl">
+            {pageDescription}
+          </Text>
+        </Flex>
+
+        <chakra.hr borderColor="blackAlpha.900" />
       </Stack>
 
       <Flex
-        maxW={1000}
+        maxW={900}
         mx="auto"
         pb={12}
         display={'flex'}
@@ -76,10 +77,10 @@ export default function AboutIndex() {
             />
           </Flex>
 
-          <Stack w={{ base: 'full', lg: '40%' }} p={2} direction="column" spacing={6}>
+          <Stack w={{ base: 'full', lg: '50%' }} p={2} direction="column" spacing={6}>
             <Stack spacing={2} textAlign={'left'} w="fit-content" direction="column">
               <Stack spacing={0} textAlign={'left'} w="fit-content" direction="column">
-                <Text fontSize={'2xl'} fontWeight={700}>
+                <Text fontSize={'4xl'} fontWeight={700}>
                   Digital CraftsMan
                 </Text>
                 <chakra.hr borderColor="blackAlpha.800" border="1" w="full" />
@@ -107,7 +108,7 @@ export default function AboutIndex() {
           <Stack w={{ base: 'full', md: '40%' }} direction="column" spacing={6}>
             <Stack spacing={2} textAlign={'left'} w="fit-content" direction="column">
               <Stack spacing={0} textAlign={'left'} w="fit-content" direction="column">
-                <Text fontSize={'2xl'} fontWeight={700}>
+                <Text fontSize={'4xl'} fontWeight={700}>
                   Devoted Father
                 </Text>
                 <chakra.hr borderColor="blackAlpha.800" border="1" w="full" />

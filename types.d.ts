@@ -122,3 +122,10 @@ interface TechStackProps {
   type: string;
   image: string;
 }
+
+interface MetaData {
+  siteTitle: string;
+  siteDescription: string;
+  defaultKeywords: string[];
+  // Add other properties as needed based on your `meta` object structure
+}
