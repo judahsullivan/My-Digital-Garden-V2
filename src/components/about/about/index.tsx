@@ -71,7 +71,9 @@ export default function AboutIndex() {
             textAlign="center"
           >
             <ScrollImage
-              src={'../../../../public/assets/about.jpg'}
+              src={
+                'https://raw.githubusercontent.com/judahsullivan/My-Digital-Garden-V2/master/public/assets/about.jpg'
+              }
               width={'300px'}
               height={'500px'}
             />
