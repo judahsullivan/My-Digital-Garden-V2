@@ -39,7 +39,6 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
       pb={12}
       ref={featuredContainer}
       px={2}
-
       gap={20}
       mx="auto"
       display="flex"

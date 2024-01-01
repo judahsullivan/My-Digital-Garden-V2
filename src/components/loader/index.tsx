@@ -58,7 +58,6 @@ export default function Preloader({ onLoadingComplete }: PreloaderProps) {
       w="full"
       minH={'100dvh'}
       zIndex={99}
-    >
-    </MotionFlex>
+    ></MotionFlex>
   );
 }

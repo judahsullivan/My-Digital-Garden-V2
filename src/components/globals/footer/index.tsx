@@ -60,8 +60,7 @@ const Footer = () => {
           align="center"
           direction={{ base: 'column', md: 'column', lg: 'row', xl: 'row' }}
           justify="space-between"
-        >
-        </Flex>
+        ></Flex>
       </Stack>
 
       <Flex direction="column">

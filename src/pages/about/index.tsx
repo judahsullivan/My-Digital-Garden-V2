@@ -11,7 +11,7 @@ import PageLayout from '@/components/layout/pageLayout';
 import Philosphy from '@/components/about/philosphy';
 
 interface StackProps {
-  techstacks: TechStackProps[]
+  techstacks: TechStackProps[];
 }
 
 export default function About({ techstacks }: StackProps) {
@@ -19,7 +19,7 @@ export default function About({ techstacks }: StackProps) {
     <PageLayout>
       <AboutIndex />
       <ZoomInText />
-      <Philosphy/>
+      <Philosphy />
       <Skills />
       <TechStack techstacks={techstacks} />
       <ZoomOut />

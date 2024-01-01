@@ -4,8 +4,7 @@ import { useEffect } from 'react';
 
 export default function AboutHeroAnimations() {
   const [ref, animate] = useAnimate();
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
 
   return ref;
 }

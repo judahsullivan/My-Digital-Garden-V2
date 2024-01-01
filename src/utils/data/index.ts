@@ -49,7 +49,7 @@ export const techstacks = [
     description: 'Web development',
     link: 'https://reactjs.org/',
     type: 'development',
-    image: '/assets/images/skills/react.png',
+    image: '/assets/images/skills/react.png'
   },
   {
     name: 'Javascript',
@@ -158,4 +158,3 @@ export const meta = {
     'Next.js, Tailwindcss, Portfolio, Web development, front-end development, back-end development, full-stack development,  React, JavaScript, HTML, CSS, Git, Agile, Scrum, responsive design'
   ]
 };
-

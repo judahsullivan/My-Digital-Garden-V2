@@ -49,9 +49,17 @@ const skills: SkillProps[] = [
 ];
 
 export default function Skills() {
-  return(
- <Box display='flex' alignItems="center" justifyContent="center" minH="100dvh" bgColor={'blackAlpha.900'} width="full" p={2}>
+  return (
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      minH="100dvh"
+      bgColor={'blackAlpha.900'}
+      width="full"
+      p={2}
+    >
       <Heading textColor="white">My Skills</Heading>
-  </Box>
-
-  )}
+    </Box>
+  );
+}

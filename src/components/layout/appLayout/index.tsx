@@ -19,7 +19,6 @@ export default function AppLayout({ children }: { children: ReactNode }) {
   return (
     <Box overflow="hidden">
       <Navigation />
-
       <Box ref={pageContainer} overflow="hidden" minH="100dvh" w="full">
         {children}
       </Box>
