@@ -71,7 +71,7 @@ export default function AboutIndex() {
             textAlign="center"
           >
             <ScrollImage
-              src="https://judahsullivan.dev/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fabout.01b991c2.jpg&w=640&q=75"
+              src={'../../../../public/assets/about.jpg'}
               width={'300px'}
               height={'500px'}
             />
