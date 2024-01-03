@@ -17,7 +17,7 @@ export default function Main({ projects, articles }: HomeProps) {
   return (
     <PageLayout>
       <Home />
-      <DescriptionSection />
+      {/* <DescriptionSection /> */}
       <RecentProjects projects={projects} />
       <FeaturedArticles articles={articles} />
     </PageLayout>

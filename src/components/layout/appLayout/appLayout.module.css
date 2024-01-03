@@ -5,6 +5,7 @@
 }
 .circle {
   height: 1700%;
+  pointer-events: none;
   overflow: hidden;
   width: 120%;
   left: -12.5%;

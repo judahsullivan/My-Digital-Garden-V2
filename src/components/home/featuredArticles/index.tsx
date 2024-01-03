@@ -22,14 +22,13 @@ import AnimatedButton from '@/components/globals/animatedButton';
 import { PostPayLoad } from '../../../../types';
 import { useResize } from '@/lib/useResize';
 import { ColumnCard, TableCard } from '@/components/globals/card/projectCard';
-import RecentProjectsAnimation from '../animations/recentProjects';
 import FeaturedArticlesAnimation from '../animations/featuredArticles';
 
 export default function FeaturedArticles({ articles }: { articles: PostPayLoad[] }) {
   const featuredContainer = FeaturedArticlesAnimation();
   const { viewMode } = useResize();
   const [hovered, setIsHovered] = useState();
-  const title = 'Journey of my Thoughtful Explorations';
+  const title = 'Featured Articles';
 
   const description =
     "Embark on a voyage through my mind's depths. Each entry a revelation, weaving curiosity and introspection. Explore diverse musings and insightful reflections. Join me in navigating the maze of thoughts, seeking meaning together.";
@@ -47,45 +46,27 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
       w="full"
       minH="100dvh"
     >
-      <Box w="100%" display="flex">
-        <Flex gap={5} w="fit-content" direction="column">
-          <Box w="fit-content">
-            <Text fontSize={'2xl'} textAlign="left" fontWeight={600} lineHeight="none">
-              {title.split(' ').map((title, index) => (
-                <chakra.span
-                  key={index}
-                  overflow="hidden"
-                  display="inline-block"
-                  pl={1}
-                  maxW="md"
-                  fontSize={'2xl'}
-                >
-                  <chakra.span className="" display="inline-block">
-                    {title}{' '}
-                  </chakra.span>
-                </chakra.span>
-              ))}
-            </Text>
-            <chakra.hr borderColor="blackAlpha.800" className="" border="1" w="full" />
-          </Box>
-
-          <Text fontSize="lg" h="fit-content" textAlign={'left'} lineHeight="1.3" maxW="lg">
-            {description.split(' ').map((desc, index) => (
-              <chakra.span key={index} pl={1} overflow="hidden" display="inline-block">
-                <chakra.span className="" display="inline-block">
-                  {desc}{' '}
-                </chakra.span>
-              </chakra.span>
-            ))}
+   <Box w="100%" display="flex" alignItems="center" flexDirection="column">
+        <Flex
+          justify="space-between"
+          w="full"
+          align="center"
+          direction={{ base: 'column', md: 'row' }}
+        >
+          <Heading textColor="accent.100" fontSize={{ base: '6xl', md: '8xl' }} maxW="2xl">
+            {title}
+          </Heading>
+          <Text fontSize={{ base: 'xl', md: '2xl' }} maxW="xl">
+            {description}
           </Text>
         </Flex>
+
+        <chakra.hr borderColor="blackAlpha.900" w="full" />
       </Box>
-      <Flex direction={'column'} w="full" align={'center'} justify={'center'}>
+
+        <Flex direction={'column'} w="full" align={'center'} justify={'center'}>
         {viewMode === 'grid' ? (
           <Fragment>
-            <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
-              Featured Articles
-            </Heading>
             <SimpleGrid columns={{ base: 1, md: 2 }} gap={10}>
               {articles.map((article, index) => (
                 <Fragment key={index}>
@@ -101,14 +82,10 @@ export default function FeaturedArticles({ articles }: { articles: PostPayLoad[]
         ) : (
           <Box w="full">
             <TableContainer justifySelf={'start'}>
-              <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
-                Featured Articles
-              </Heading>
-
               <Table mt={5} colorScheme="black" variant="unstyled">
                 <Thead>
                   <Tr>
-                    <Th w="50%">Title</Th>
+                    <Th w="60%">Title</Th>
                     <Th>Category</Th>
                     <Th>Date</Th>
                   </Tr>

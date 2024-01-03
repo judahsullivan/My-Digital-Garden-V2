@@ -30,30 +30,28 @@ export default function App({ Component, pageProps }: AppProps) {
         smoothWheel: true
       }}
     >
-        {isLoading ? (
-
-      <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
+      {isLoading ? (
+        <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
           <Preloader onLoadingComplete={() => setisLoading(false)} />
-
-      </AnimatePresence>
-        ) : (
-          <Fragment>
-            {isStudioPage ? (
-              <Component {...pageProps} />
-            ) : (
-              <AppLayout>
-                <Analytics />
-                <AnimatePresence
-                  mode="wait"
-                  initial={false}
-                  onExitComplete={() => window.scrollTo(0, 0)}
-                >
-                  <Component key={router.route} {...pageProps} />
-                </AnimatePresence>
-              </AppLayout>
-            )}
-          </Fragment>
-        )}
+        </AnimatePresence>
+      ) : (
+        <Fragment>
+          {isStudioPage ? (
+            <Component {...pageProps} />
+          ) : (
+            <AppLayout>
+              <Analytics />
+              <AnimatePresence
+                mode="wait"
+                initial={false}
+                onExitComplete={() => window.scrollTo(0, 0)}
+              >
+                <Component key={router.route} {...pageProps} />
+              </AnimatePresence>
+            </AppLayout>
+          )}
+        </Fragment>
+      )}
     </Providers>
   );
 }

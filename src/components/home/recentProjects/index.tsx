@@ -26,11 +26,9 @@ export default function RecentProjects({ projects }: { projects: ProjectPayLoad[
   const contentContainer = RecentProjectsAnimation();
   const { viewMode } = useResize();
 
+  const title = 'Recent Projects';
   const description =
     'A testament to innovation and design finesse. Each project encapsulates vision, precision, and the essence of digital transformation, shaping today and defining tomorrow.';
-  const about =
-    'I’m a developer with a passion for design and a knack for problem-solving. Whether it’s crafting beautiful user interfaces for the web or developing innovative mobile applications, I am always eager to push myself and expand my skillset. With a focus on continual, learning and growth I strive to stay up-to-date with the latest technologies and best practices ensuring that my work is always top-notch.';
-
   return (
     <Flex
       ref={contentContainer}
@@ -45,45 +43,26 @@ export default function RecentProjects({ projects }: { projects: ProjectPayLoad[
       w="full"
       minH="100dvh"
     >
-      <Box w="100%" display="flex">
-        <Flex gap={5} w="fit-content" direction="column">
-          <Box w="fit-content">
-            <Text fontSize={'2xl'} textAlign="left" fontWeight={600} lineHeight="none">
-              {'Discover my Latest Creations'.split(' ').map((title, index) => (
-                <chakra.span
-                  key={index}
-                  overflow="hidden"
-                  display="inline-block"
-                  pl={1}
-                  maxW="md"
-                  fontSize={'2xl'}
-                >
-                  <chakra.span className="contenttitle" display="inline-block">
-                    {title}{' '}
-                  </chakra.span>
-                </chakra.span>
-              ))}
-            </Text>
-            <chakra.hr borderColor="blackAlpha.800" className="contenthr" border="1" w="full" />
-          </Box>
-
-          <Text fontSize="lg" h="fit-content" textAlign={'left'} lineHeight="1.3" maxW="lg">
-            {description.split(' ').map((desc, index) => (
-              <chakra.span key={index} pl={1} overflow="hidden" display="inline-block">
-                <chakra.span className="contentdescription" display="inline-block">
-                  {desc}{' '}
-                </chakra.span>
-              </chakra.span>
-            ))}
+      <Box w="100%" display="flex" alignItems="center" flexDirection="column">
+        <Flex
+          justify="space-between"
+          w="full"
+          align="center"
+          direction={{ base: 'column', md: 'row' }}
+        >
+          <Heading textColor="accent.100" fontSize={{ base: '6xl', md: '8xl' }} maxW="2xl">
+            {title}
+          </Heading>
+          <Text fontSize={{ base: 'xl', md: '2xl' }} maxW="xl">
+            {description}
           </Text>
         </Flex>
+
+        <chakra.hr borderColor="blackAlpha.900" w="full" />
       </Box>
       <Flex direction={'column'} w="full" align={'center'} justify={'center'}>
         {viewMode === 'grid' ? (
           <Fragment>
-            <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
-              Recent Projects
-            </Heading>
             <SimpleGrid columns={{ base: 1, md: 2 }} gap={10}>
               {projects.map((project, index) => (
                 <Fragment key={index}>
@@ -99,14 +78,10 @@ export default function RecentProjects({ projects }: { projects: ProjectPayLoad[
         ) : (
           <Box w="full">
             <TableContainer justifySelf={'start'}>
-              <Heading textColor="accent.100" fontSize="lg" textAlign="left" w="full">
-                Recent Projects
-              </Heading>
-
               <Table mt={5} colorScheme="black" variant="unstyled">
                 <Thead>
                   <Tr>
-                    <Th w="50%">Title</Th>
+                    <Th w="60%">Title</Th>
                     <Th>Category</Th>
                     <Th>Date</Th>
                   </Tr>
